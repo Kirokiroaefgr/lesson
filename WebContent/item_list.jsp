@@ -12,31 +12,27 @@
 <%--jQueryの読み込み--%>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <%--共通cssの読み込み --%>
-<link rel="stylesheet" href="./css/main_top.css">
+<!-- <link rel="stylesheet" href="./css/main.css"> -->
 <%--共通jsの読み込み --%>
-<script src="./js/jqdrawbsgrid.js"></script>
-<title>トップページ</title>
+<%-- <script src="./js/main.js"></script> --%>
+<title>Template</title>
 </head>
 <body>
 	<div class="container">
 		<%--　ヘッダー --%>
-		<div class="row" style="margin-bottom:-15px;">
-			<div class="col-xs-12 col-sm-12" >
+		<div class="row">
+			<div class="col-xs-12 col-sm-12" style="background: #fff;">
 				<jsp:include page="header.jsp" /></div>
 		</div>
 		<%--ヘッダー --%>
-    <div class="jumbotron" style="margin-top: -15px; height:300px; background: rgba(255,255,255,.0);color:#00a497;">
-      <div class="container">
-        <h1>LESSON</h1>
-       <h3>プログラムの学習に関する書籍を販売するサイトです。</h3>
-      </div>
-    </div>
+
+
 
 
 		<%--フッター(ただの文字　未完成) --%>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 text-center"
-				style="background: rgba(255,255,255,.0);">
+				style="background: #fff;">
 				<p id="pageTop"><a href="#">⇧</a></p>
 				<hr class="style-one">
 				<h1 style="margin: 3rem auto;">会社概要 利用規約</h1>

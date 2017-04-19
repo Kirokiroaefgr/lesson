@@ -143,7 +143,7 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	font-size:7em;
 	margin-bottom:15px;
 /* 	color:#FDF9F4; */
-color:#ffffff;
+color:#fff;
 	line-height:1em;
 }
 .subtitle {
@@ -300,11 +300,11 @@ color:#fff;
 /*                   Inverted theme                        */
 /***********************************************************/
 .theme-invert {
-	color:#222;
-	color:rgba(0,0,0,.8);
+	color:#00a497;
+/* 	color:rgba(0,0,0,.8); */
  }
 .theme-invert a {
-	color:#000;
+	color:#00a400;
 }
 .theme-invert .btn {
 	color:rgba(255,255,255,.8);
@@ -316,7 +316,7 @@ color:#fff;
 	color:rgba(0,0,0,.8);
 }
 .theme-invert .btn-link:hover, .theme-invert .btn-link:focus, .theme-invert .btn-link:active {
-	color:#000
+	color:#00a497
 }
 .theme-invert .navbar-toggle {
 	background: rgba(0, 0, 0, 0.12);
@@ -325,17 +325,17 @@ color:#fff;
   background: #333;
 }
 .theme-invert .mainmenu .dropdown-menu a {
-	color:#000;
+	color:#00a497;
 }
 .theme-invert .mainmenu .dropdown-menu a:hover {
 	background:rgba(0,0,0,.1);
-	color:#000;
+	color:#00a497;
 }
 
 .theme-invert .title,
 .theme-invert .subtitle,
 .theme-invert .tagline {
-	color:#222222;
+	color:#00a497;
 }
 
 .theme-invert .btn-default {

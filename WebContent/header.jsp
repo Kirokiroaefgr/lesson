@@ -41,7 +41,7 @@
 							<li><a href="#" style="color:#00a497;">購入履歴</a></li>
 							<li><a href="#">Page 1-3</a></li>
 						</ul></li>
-					<li><a href="#" style="color:#00a497;">
+					<li><a href="cart.jsp" style="color:#00a497;">
 							カート</a></li>
 					<li><a href="login.jsp" style="color:#00a497;"><span class="glyphicon glyphicon-log-in"></span>
 							Login</a></li>

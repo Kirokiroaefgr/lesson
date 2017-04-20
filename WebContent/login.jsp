@@ -25,7 +25,7 @@
 				<jsp:include page="header.jsp" /></div>
 		</div>
 		<%--ヘッダー --%>
-		<div class="col-xs-12">
+		<div class="col-xs-12 col-sm-12">
 			<div class="login-container">
 				<div id="output"></div>
 				<div class="avatar"></div>

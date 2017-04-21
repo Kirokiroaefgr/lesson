@@ -14,7 +14,7 @@
 <%--共通cssの読み込み --%>
 <link rel="stylesheet" href="./css/login.css">
 <%--共通jsの読み込み --%>
-<script src="./js/login.js"></script>
+<%-- <script src="./js/login.js"></script> --%>
 <title>Template</title>
 </head>
 <body>
@@ -30,11 +30,11 @@
 				<div id="output"></div>
 				<div class="avatar"></div>
 				<div class="form-box">
-					<form action="" >
-						<input name="user" type="text" placeholder="username"> <input
-							type="password" placeholder="password">
-						<button class="btn btn-info btn-block login" type="submit">Login</button>
-					</form>
+					<s:form action="LoginAction">
+						<input name="email" type="text" placeholder="メールアドレス">
+						<input  name="password" type="password" placeholder="password">
+						<button class="btn btn-info btn-block login" type="submit">ログイン</button>
+					</s:form>
 				</div>
 			</div>
 		</div>

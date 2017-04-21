@@ -17,7 +17,7 @@
 <%-- <script src="./js/main.js"></script> --%>
 <title>商品一覧</title>
 </head>
-<body>
+<body style="background:#fff;">
 	<div class="container">
 		<%--　ヘッダー --%>
 		<div class="row">
@@ -28,7 +28,7 @@
 		<%--ヘッダー --%>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-2" style="background: #fff; ,min-height:700px;">
+			<div class="col-xs-12 col-sm-2" style="background: #fff; ,min-height:700px;">
 			<div class="well well-sm">コンピューター・IT</div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -36,10 +36,9 @@
                 </div>
                 <!-- <div class="panel-body"> -->
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href=""><i class="glyphicon glyphicon-pencil"></i> java</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-download"></i> javascript</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-leaf"></i> c言語</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-folder-open"></i> 試験関連</a></li>
+                    <s:iterator value="genreList">
+                        <li><a href=""><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a></li>
+                    </s:iterator>
                 </ul>
                 <!-- </div> -->
                <div class="panel-body">条件を絞り込んで探す</div>
@@ -52,7 +51,7 @@
                 </ul>
             </div>
 			</div>
-			<div class="col-xs-10" style="background: #fff; min-height:700px;">
+			<div class="col-xs-12 col-sm-10" style="background: #fff; min-height:700px;">
 			  <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="#">コンピューター・IT</a></li>
@@ -65,15 +64,15 @@
           </div>
           <div class="panel-body">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-xs-12 col-sm-2">
                     <div class="thumbnail" style="text-align:center;padding-top:10px;">
                         <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
+                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: auto; width: auto; min-height: 150px; min-width: 150px;">
                         </a>
                         <div class="caption">
                             <p><b>すっきりわかるJava入門</b></p>
                             <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
+                            <p style="margin-bottom:0px"><a href="" class="btn btn-warning">カートへ</a></p>
                         </div>
                     </div>
                 </div>
@@ -81,117 +80,7 @@
 
 
 
-                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>                <div class="col-md-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: 150px; width: 150px; min-height: 150px; min-width: 150px;">
-                        </a>
-                        <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-primary">カートへ</a></p>
-                        </div>
-                    </div>
-                </div>
+
 
 
 

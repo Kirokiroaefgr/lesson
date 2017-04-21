@@ -2,14 +2,34 @@
 <!DOCTYPE struts PUBLIC
 "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.devMode " value="true" />
 
-	<constant name="struts.devMode " value="true" />
-	<package name="stest" extends="struts-default" namespace="/">
-<!-- 		<action name="timeAction" class="action.ServerTimeAction"> -->
-<!-- 			<result name="success">time.jsp</result> -->
-<!-- 		</action> -->
-	</package>
+     <package name="default" extends="struts-default" namespace="/">
 
+        <!-- ログイン処理 -->
+        <action name="LoginAction" class="com.internousdev.lesson.action.LoginAction" method="execute">
+            <result name="success">main_top.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
 
+        <!-- ログアウト処理 -->
+        <action name="LogOutAction" class="com.internousdev.lesson.action.LogOutAction" method="execute">
+            <result name="success">main_top.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+
+        <!-- マイページ -->
+        <action name="MypageAction" class="com.internousdev.lesson.action.MypageAction" method="execute">
+            <result name="success">my_page.jsp</result>
+            <result name="error">login.jsp</result>
+         </action>
+
+        <!-- 商品一覧画面への遷移 -->
+        <action name="GenreAciton" class="com.internousdev.lesson.action.GenreAciton" method="execute">
+            <result name="success">item_list.jsp</result>
+            <result name="error">item_list.jsp</result>
+        </action>
+
+    </package>
 </struts>

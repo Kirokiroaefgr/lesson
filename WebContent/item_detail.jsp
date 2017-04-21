@@ -14,7 +14,7 @@
 <%--共通cssの読み込み --%>
 <link rel="stylesheet" href="./css/item_detail.css">
 <%--共通jsの読み込み --%>
-<%-- <script src="./js/main.js"></script> --%>
+<script src="./js/item_detail.js"></script>
 <title>商品詳細</title>
 </head>
 <body>
@@ -37,21 +37,25 @@
                   </ol>
               </div>
 
-              <div class="col-xs-3">
+              <div class="col-xs-12 col-sm-3">
                   <div class="row">
-                      <div class="col-xs-12" style="height:20px;"></div>
-                      <div class="col-xs-12">
-                          <img src='./img/noImage.png'class="img-thumbnail" style="width: 450px; height: 350px;"name="imgblock">
+                      <div class="col-xs-8 col-xs-offset-2 col-sm-12" style="height:20px;"></div>
+                      <div class="col-xs-12 col-sm-12 center-block">
+                          <img src='./img/noImage.png'class="img-thumbnail img-responsive center-block MP" style="width: auto; height: auto;">
                       </div>
-                      <div class="col-xs-12 center-block">
-                          <img src='./img/noImage.png' style="width: 119px; height: 100px;" class="img-thumbnail"onclick="changeImg1()">
-                          <img src='./img/noImage2.png' style="width: 119px; height: 100px;" class="img-thumbnail"onclick="changeImg2()">
-                          <img src='./img/noImage3.png' style="width: 119px; height: 100px;" class="img-thumbnail"onclick="changeImg3()">
+                      <div class="col-xs-4 col-sm-4" style="padding:0;">
+                          <img src='./img/noImage.png' style="width: auto; height: auto;" class="img-thumbnail img-responsive center-block CP" >
+                      </div>
+                      <div class="col-xs-4 col-sm-4" style="padding:0;">
+                          <img src='./img/noImage2.png' style="width: auto; height: auto;" class="img-thumbnail img-responsive center-block CP" >
+                      </div>
+                      <div class="col-xs-4 col-sm-4" style="padding:0;">
+                          <img src='./img/noImage3.png' style="width: auto; height: auto;" class="img-thumbnail img-responsive center-block CP" >
                       </div>
                   </div>
               </div>
 
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
                   <h2><strong>すっきりわかるjava入門</strong></h2>
                   <table class="table">
                       <tbody>
@@ -83,10 +87,10 @@
                       </tbody>
                   </table>
               </div>
-              <div class="col-xs-3" style="margin-top:20px;">
-                  <div class="panel panel-default">
+              <div class="col-xs-12 col-sm-3" style="margin-top:20px; ">
+                  <div class="panel panel-default" style="min-width:200px;">
                       <div class="panel-heading">
-                          2,600円 （税込：2,808円）<br>
+                          2,600円 (税込:2,808円)<br>
                           在庫あり
                           <s:form action="CartInsertAction">
                               <s:hidden name="itemId" value="%{itemId}" />

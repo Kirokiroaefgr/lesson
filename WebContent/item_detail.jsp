@@ -84,7 +84,7 @@
 
                                   <tr>
                                       <th>価格</th>
-                                      <td><fmt:formatNumber value="${price}" />円 （税込：<fmt:formatNumber value="${price*1.08}" />円）</td>
+                                      <td><fmt:formatNumber value="${price}" />円 （税込：<fmt:formatNumber value="${price*1.08}" pattern="###,###,###"/>円）</td>
                                   </tr>
                             </tbody>
                        </table>
@@ -94,7 +94,7 @@
                   <s:iterator value="itemList">
                       <div class="panel panel-default" style="min-width:200px;">
                           <div class="panel-heading">
-                              <fmt:formatNumber value="${price}" />円 (税込:<fmt:formatNumber value="${price*1.08}" />円)<br>
+                              <fmt:formatNumber value="${price}" />円 (税込:<fmt:formatNumber value="${price*1.08}" pattern="###,###,###" />円)<br>
                               在庫あり
                               <s:form action="CartInsertAction">
                                   <s:hidden name="itemId" value="%{itemId}" />

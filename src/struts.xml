@@ -37,14 +37,20 @@
             <result name="error">item_detail.jsp</result>
         </action>
 
-        <!-- カートへの遷移 -->
+        <!-- カート画面への遷移 -->
         <action name="CartInsertAction" class="com.internousdev.lesson.action.CartInsertAction" method="execute">
             <result name="success">cart.jsp</result>
             <result name="error">cart.jsp</result>
         </action>
 
-                <!-- カートへの遷移 -->
+        <!-- カート画面の商品削除 -->
         <action name="CartDeleteAction" class="com.internousdev.lesson.action.CartDeleteAction" method="execute">
+            <result name="success">cart.jsp</result>
+            <result name="error">cart.jsp</result>
+        </action>
+
+         <!-- ですと-->
+        <action name="LotInsert" class="com.internousdev.lesson.action.LotInsert" method="execute">
             <result name="success">cart.jsp</result>
             <result name="error">cart.jsp</result>
         </action>

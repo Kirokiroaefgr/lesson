@@ -13,6 +13,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <%--共通cssの読み込み --%>
 <link rel="stylesheet" href="./css/item_detail.css">
+<link rel="stylesheet" href="./css/cart.css">
 <%--共通jsの読み込み --%>
 <script src="./js/cart.js"></script>
 <title>カート</title>
@@ -37,8 +38,8 @@
 
               <div class="col-xs-12 col-sm-9">
                   <strong>Lessonネットショッピング</strong>
-                  <div class="table-responsive">
-                  <table class="table table-hover">
+                  <div class="table-responsive" >
+                  <table class="table table-hover" >
                       <thead>
                           <tr>
                               <th>商品名</th>
@@ -49,16 +50,16 @@
                       <s:iterator value="cartList">
                       <tbody>
                           <tr>
-                              <td>
-                                  <div class="col-xs-12">
+                              <td style="">
+                                  <div class="col-xs-12" style="min-width:400px;height:170px;">
                                       <div class="col-xs-3">
                                           <a href="">
-                                              <img src="./img/Product/<s:property value="itemImg01"/>"class="img-responsive" alt="" style="height: 100px; width: 100px; min-height: 100px; min-width: 100px; margin-top:10px;">
+                                              <img src="./img/Product/<s:property value="itemImg01"/>"class="img-responsive" alt="" style="min-height: 70px; min-width: 70px; margin-top:10px;">
                                           </a>
                                       </div>
-                                      <div class="col-xs-9" >
-                                          <h3 style="width:100px;"><s:property value="itemName"/></h3><br>
-                                          <p><b>価格：<fmt:formatNumber value="${price*1.08}" />円(税込)</b></p>
+                                      <div class="col-xs-9" style="padding:0; margin-top:-20px;">
+                                          <h3 style="white-space: normal;"><s:property value="itemName"/></h3><br>
+                                          <p><b>価格：<fmt:formatNumber value="${subtotal*1.08}" pattern="###,###,###"/>円(税込)</b></p>
                                       </div>
                                   </div>
                               </td>
@@ -87,7 +88,7 @@
                                       </div>
                                   </s:form>
                               </td>
-                              <td style="width: 150px;">価格：2,808円(税込)</td>
+                              <td style="width: 150px;">価格：<fmt:formatNumber value="${orderCount*subtotal*1.08}" pattern="###,###,###"/>円(税込)</td>
                           </tr>
                       </tbody>
                       </s:iterator>
@@ -98,10 +99,11 @@
               <div class="col-xs-12 col-sm-3">
                   <div class="panel panel-default">
                       <div class="panel-heading" style="background:#fde8d0">
-                          <button type="submit" class="btn btn-warning center-block">ご注文手続きに進む</button>
+                      <s:form action="LotInsert">
+                          <button type="submit" class="btn btn-warning center-block">ご注文手続きに進む</button></s:form>
                           <div class="well">
                               商品代金合計<br>
-                              <p class="text-right"><fmt:formatNumber value="${payment*1.08}" />円(税込)</p>
+                              <p class="text-right"><fmt:formatNumber value="${payment*1.08}" pattern="###,###,###"/>円(税込)</p>
                               合計注文数<br>
                               <p class="text-right">${order}点</p>
                           </div>

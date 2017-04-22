@@ -53,10 +53,10 @@
                             <h2 class="panel-title">ユーザー情報</h2>
                         </div>
                         <div class="panel-body">
-                            <table class="table">
+                            <table class="table" style="border:none;">
                                 <tbody>
                                     <tr>
-                                        <th>名前(漢字)</th>
+                                        <th style="border:none;">名前(漢字)</th>
                                         <td><s:property value="familyNameKanji" />  <s:property value="givenNameKanji" /></td>
                                     </tr>
 

@@ -25,7 +25,7 @@ public class ItemListAction extends ActionSupport {
 	public String execute() {
 		choiceGenre=itemGenre;
 		GenreDAO genreDao= new GenreDAO();
-		genreList = genreDao.selectGenre();
+		genreList = genreDao.selectGenre(itemGenre);
 
 		ItemListDAO itemDao =new ItemListDAO();
 		itemList=itemDao.itemSelect(itemGenre,0);

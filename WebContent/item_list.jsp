@@ -39,7 +39,7 @@
                           <li><a href='<s:url action="ItemListAction"></s:url>'> &lt;コンピューター・IT</a></li>
                           <s:iterator value="genreList">
                               <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'>
-                                  <s:if test='choiceGenre==itemGenre'>&lt;</s:if><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a>
+                                  <s:if test='choiceGenre==itemGenre'>&lt;</s:if><s:else><i class="glyphicon glyphicon-pencil"></i></s:else><s:property value="%{itemGenre}"/></a>
                               </li>
                           </s:iterator>
                       </ul>

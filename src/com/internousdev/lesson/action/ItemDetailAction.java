@@ -12,7 +12,7 @@ public class ItemDetailAction extends ActionSupport {
 	private  List<ItemDTO> itemList = new ArrayList<>();
 	public String execute() {
 		ItemListDAO itemDao =new ItemListDAO();
-		itemList=itemDao.itemSelect(null,itemId);
+		itemList=itemDao.itemSelect(null,itemId,0,0);
 		return SUCCESS;
 	}
 	/**

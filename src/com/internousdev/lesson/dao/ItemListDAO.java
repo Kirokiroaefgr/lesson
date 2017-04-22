@@ -24,20 +24,44 @@ public class ItemListDAO {
 	 *            商品カテゴリ
 	 * @return searchList
 	 */
-	public List<ItemDTO> itemSelect(String itemGenre,int itemId) {
-		DBConnector db  = new  DBConnector("lesson");
+	public List<ItemDTO> itemSelect(String itemGenre, int itemId, int pageNum, int amountSort) {
+		DBConnector db = new DBConnector("lesson");
 		List<ItemDTO> itemList = new ArrayList<>();
-		String sql="SELECT * FROM item";
-		if(itemGenre!=null){
-			sql +=" WHERE item_genre = ?";
-		}else if(itemId!=0){
-			sql +=" where item_id=?";
+		String sql = "SELECT * FROM item limit ?,12";
+
+		if (amountSort != 0) {
+			if (itemGenre != null) {
+				sql = "select * from item where item_genre=? and";
+			} else {
+				sql = "select * from item where";
+			}
+			switch (amountSort) {
+			case 1:
+				sql += " price>=0 and price<=1000  limit ?,12";
+				break;
+			case 2:
+				sql += " price>=1001 and price<=2000  limit ?,12";
+				break;
+			case 3:
+				sql += " price>=2001 and price<=5000  limit ?,12";
+				break;
+			case 4:
+				sql += " price>=5001 limit ?,12";
+				break;
+			}
+		} else if (itemGenre != null) {
+			sql = "SELECT * FROM item WHERE item_genre = ? limit ?,12";
+		} else if (itemId != 0) {
+			sql = "SELECT * FROM item where item_id=?";
 		}
+
 		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 
-			if(itemGenre!=null){
+			ps.setInt(1, pageNum);
+			if (itemGenre != null) {
 				ps.setString(1, itemGenre);
-			}else if(itemId!=0){
+				ps.setInt(2, pageNum);
+			} else if (itemId != 0) {
 				ps.setInt(1, itemId);
 			}
 
@@ -64,5 +88,47 @@ public class ItemListDAO {
 			e.printStackTrace();
 		}
 		return itemList;
+	}
+
+	public int countSelect(String itemGenre, int amountSort) {
+		int count = 0;
+		DBConnector db = new DBConnector("lesson");
+		String sql = "select count(item_genre) from item";
+
+		if (amountSort != 0) {
+			if (itemGenre != null) {
+				sql = "select count(item_genre) from item where item_genre=? and";
+			} else {
+				sql = "select count(item_genre) from item where";
+			}
+			switch (amountSort) {
+			case 1:
+				sql += " price>=0 and price<=1000";
+				break;
+			case 2:
+				sql += " price>=1001 and price<=2000";
+				break;
+			case 3:
+				sql += " price>=2001 and price<=5000";
+				break;
+			case 4:
+				sql += " price>=5001";
+				break;
+			}
+		} else if (itemGenre != null) {
+			sql += " where item_genre=?";
+		}
+		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+			if (itemGenre != null) {
+				ps.setString(1, itemGenre);
+			}
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+			System.out.println(count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

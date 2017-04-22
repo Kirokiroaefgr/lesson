@@ -29,25 +29,30 @@
 	<div class="container-fluid">
 	    <div class="row">
 	        <div class="col-xs-12 col-sm-2" style="background: #fff; ,min-height:700px;">
-			        <div class="well well-sm">コンピューター・IT</div>
-                  <div class="panel panel-primary">
-                      <div class="panel-heading"> カテゴリー</div>
-                <ul class="nav nav-pills nav-stacked">
-                    <s:iterator value="genreList">
-                        <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a></li>
-                    </s:iterator>
-                </ul>
-                <!-- </div> -->
-               <div class="panel-body">条件を絞り込んで探す</div>
+			        <div class="well well-sm">
+			            <s:if test="itemGenre!=null"><s:property value="%{itemGenre}"/></s:if>
+			            <s:else>コンピューター・IT</s:else>
+			        </div>
+              <div class="panel panel-primary">
+                  <div class="panel-heading"> カテゴリー</div>
+                      <ul class="nav nav-pills nav-stacked">
+                          <li><a href='<s:url action="ItemListAction"></s:url>'> &lt;コンピューター・IT</a></li>
+                          <s:iterator value="genreList">
+                              <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'>
+                                  <s:if test='choiceGenre==itemGenre'>&lt;</s:if><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a>
+                              </li>
+                          </s:iterator>
+                      </ul>
+                  <div class="panel-body">条件を絞り込んで探す</div>
                   <p class="text-center"> 価格(税込み)</p>
                   <ul class="nav nav-pills nav-stacked">
-                    <li><a href=""><i class="glyphicon glyphicon-pencil"></i> 0円~1,000円</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-download"></i> 1,001円~2,000円</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-leaf"></i> 2,001円~5,000円</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-folder-open"></i> 5,001円~</a></li>
-                </ul>
-            </div>
-      </div>
+                     <li><a href=""><i class="glyphicon glyphicon-pencil"></i> 0円~1,000円</a></li>
+                     <li><a href=""><i class="glyphicon glyphicon-download"></i> 1,001円~2,000円</a></li>
+                     <li><a href=""><i class="glyphicon glyphicon-leaf"></i> 2,001円~5,000円</a></li>
+                     <li><a href=""><i class="glyphicon glyphicon-folder-open"></i> 5,001円~</a></li>
+                  </ul>
+              </div>
+          </div>
 
       <div class="col-xs-12 col-sm-10" style="background: #fff; min-height:700px;">
           <ol class="breadcrumb">

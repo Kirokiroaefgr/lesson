@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 public class ItemListAction extends ActionSupport {
+	private String choiceGenre;
 
 	private String itemGenre;
 
@@ -22,6 +23,7 @@ public class ItemListAction extends ActionSupport {
 	private List<GenreDTO> genreList = new ArrayList<>();
 
 	public String execute() {
+		choiceGenre=itemGenre;
 		GenreDAO genreDao= new GenreDAO();
 		genreList = genreDao.selectGenre();
 
@@ -71,5 +73,21 @@ public class ItemListAction extends ActionSupport {
 	public void setItemGenre(String itemGenre) {
 		this.itemGenre = itemGenre;
 	}
+
+	/**
+	 * @return choiceGenre
+	 */
+	public String getChoiceGenre() {
+		return choiceGenre;
+	}
+
+	/**
+	 * @param choiceGenre セットする choiceGenre
+	 */
+	public void setChoiceGenre(String choiceGenre) {
+		this.choiceGenre = choiceGenre;
+	}
+
+
 
 }

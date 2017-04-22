@@ -27,14 +27,11 @@
 		</div>
 		<%--ヘッダー --%>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12 col-sm-2" style="background: #fff; ,min-height:700px;">
-			<div class="well well-sm">コンピューター・IT</div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    カテゴリー
-                </div>
-                <!-- <div class="panel-body"> -->
+	    <div class="row">
+	        <div class="col-xs-12 col-sm-2" style="background: #fff; ,min-height:700px;">
+			        <div class="well well-sm">コンピューター・IT</div>
+                  <div class="panel panel-primary">
+                      <div class="panel-heading"> カテゴリー</div>
                 <ul class="nav nav-pills nav-stacked">
                     <s:iterator value="genreList">
                         <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a></li>
@@ -84,7 +81,27 @@
                 </s:iterator>
             </div>
           </div>
-          <div class="panel-footer">ページネーション</div>
+
+          <!-- ページネーションここから-->
+          <div class="panel-footer">
+              <s:if test="maxPage>0">
+                  <nav aria-label="Page navigation example">
+                      <ul class="pagination" >
+                          <li class="page-item <s:if test="num<=1">disabled</s:if>"><a class="page-link" href= '<s:url action="PageAction"><s:param name="num" value="%{1}"/></s:url>'>最初のページ</a></li>
+                          <s:if test="num<=1"><li class='page-item disabled'><a class="page-link" href= ''>前のページへ</a></li></s:if>
+                          <s:else><li class='page-item'><a class="page-link" href= '<s:url action="PageAction"><s:param name="num" value="%{num-1}"/></s:url>'>前のページへ</a></li></s:else>
+                          <s:iterator value="pageZ" status="st">
+                              <li class='page-item <s:if test="num==pageZ[#st.count-1]">active</s:if>'><a class="page-link" href= '<s:url action="PageAction"><s:param name="num" value="%{pageZ[#st.count-1]}"/></s:url>'><s:property/></a></li>
+                          </s:iterator>
+                          <s:if test="maxPage<=num"><li class="page-item disabled"><a class="page-link" href=''>次のページへ</a></li></s:if>
+                          <s:else><li class="page-item"><a class="page-link" href= '<s:url action="PageAction"><s:param name="num" value="%{num+1}"/></s:url>'>次のページへ</a></li></s:else>
+                          <li class="page-item <s:if test='maxPage<=num'>disabled</s:if>"><a class="page-link" href= '<s:url action="PageAction"><s:param name="num" value="%{maxPage}"/></s:url>'>最後のページ（<s:property value="maxPage"/>）</a></li>
+                      </ul>
+                  </nav>
+              </s:if>
+          </div>
+          <!-- ページネーションここまで -->
+
         </div>
 			</div>
 		</div>

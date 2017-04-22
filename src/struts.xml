@@ -26,9 +26,27 @@
          </action>
 
         <!-- 商品一覧画面への遷移 -->
-        <action name="GenreAciton" class="com.internousdev.lesson.action.GenreAciton" method="execute">
+        <action name="ItemListAction" class="com.internousdev.lesson.action.ItemListAction" method="execute">
             <result name="success">item_list.jsp</result>
             <result name="error">item_list.jsp</result>
+        </action>
+
+        <!-- 商品一覧画面への遷移 -->
+        <action name="ItemDetailAction" class="com.internousdev.lesson.action.ItemDetailAction" method="execute">
+            <result name="success">item_detail.jsp</result>
+            <result name="error">item_detail.jsp</result>
+        </action>
+
+        <!-- カートへの遷移 -->
+        <action name="CartInsertAction" class="com.internousdev.lesson.action.CartInsertAction" method="execute">
+            <result name="success">cart.jsp</result>
+            <result name="error">cart.jsp</result>
+        </action>
+
+                <!-- カートへの遷移 -->
+        <action name="CartDeleteAction" class="com.internousdev.lesson.action.CartDeleteAction" method="execute">
+            <result name="success">cart.jsp</result>
+            <result name="error">cart.jsp</result>
         </action>
 
     </package>

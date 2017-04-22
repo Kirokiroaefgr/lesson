@@ -35,10 +35,10 @@
                   <p>注文確定までは、商品の確保はできておりません。<br>※取り寄せ商品は、注文確定後の確認となります。</p>
               </div>
 
-              <div class="col-xs-9">
+              <div class="col-xs-12 col-sm-9">
                   <strong>Lessonネットショッピング</strong>
-
-                  <table class="table">
+                  <div class="table-responsive">
+                  <table class="table table-hover">
                       <thead>
                           <tr>
                               <th>商品名</th>
@@ -46,18 +46,19 @@
                               <th>価格</th>
                           </tr>
                       </thead>
+                      <s:iterator value="cartList">
                       <tbody>
                           <tr>
                               <td>
                                   <div class="col-xs-12">
                                       <div class="col-xs-3">
                                           <a href="">
-                                              <img src="./img/noImage4.png"class="img-responsive" alt="" style="height: 100px; width: 100px; min-height: 100px; min-width: 100px; margin-top:10px;">
+                                              <img src="./img/Product/<s:property value="itemImg01"/>"class="img-responsive" alt="" style="height: 100px; width: 100px; min-height: 100px; min-width: 100px; margin-top:10px;">
                                           </a>
                                       </div>
-                                      <div class="col-xs-9">
-                                          <h2>すっきりわかるJava入門</h2><br>
-                                          <p><b>価格：2,808円(税込)</b></p>
+                                      <div class="col-xs-9" >
+                                          <h3 style="width:100px;"><s:property value="itemName"/></h3><br>
+                                          <p><b>価格：<fmt:formatNumber value="${price*1.08}" />円(税込)</b></p>
                                       </div>
                                   </div>
                               </td>
@@ -86,21 +87,23 @@
                                       </div>
                                   </s:form>
                               </td>
-                              <td>価格：2,808円(税込)</td>
+                              <td style="width: 150px;">価格：2,808円(税込)</td>
                           </tr>
                       </tbody>
+                      </s:iterator>
                   </table>
+                  </div>
               </div>
 
-              <div class="col-xs-3">
+              <div class="col-xs-12 col-sm-3">
                   <div class="panel panel-default">
                       <div class="panel-heading" style="background:#fde8d0">
                           <button type="submit" class="btn btn-warning center-block">ご注文手続きに進む</button>
                           <div class="well">
                               商品代金合計<br>
-                              <p class="text-right">133,424円(税込)</p>
+                              <p class="text-right"><fmt:formatNumber value="${payment*1.08}" />円(税込)</p>
                               合計注文数<br>
-                              <p class="text-right">50点</p>
+                              <p class="text-right">${order}点</p>
                           </div>
                       </div>
                   </div>

@@ -40,9 +40,7 @@
 					<li><a href="main_top.jsp"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
 								<li><a
-									href='<s:url action="GenreAciton"></s:url>'>
-										<span class="glyphicon glyphicon-gift"
-							aria-hidden="true"></span> 商品</a></li>
+									href='<s:url action="ItemListAction"></s:url>'><span class="glyphicon glyphicon-gift"aria-hidden="true"></span> 商品</a></li>
 
 
 					<li><a href="inquiry.jsp"><span

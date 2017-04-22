@@ -37,7 +37,7 @@
                 <!-- <div class="panel-body"> -->
                 <ul class="nav nav-pills nav-stacked">
                     <s:iterator value="genreList">
-                        <li><a href=""><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a></li>
+                        <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'><i class="glyphicon glyphicon-pencil"></i> <s:property value="%{itemGenre}"/></a></li>
                     </s:iterator>
                 </ul>
                 <!-- </div> -->
@@ -50,13 +50,16 @@
                     <li><a href=""><i class="glyphicon glyphicon-folder-open"></i> 5,001円~</a></li>
                 </ul>
             </div>
-			</div>
-			<div class="col-xs-12 col-sm-10" style="background: #fff; min-height:700px;">
-			  <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">コンピューター・IT</a></li>
-          <li class="breadcrumb-item active">java</li>
-        </ol>
+      </div>
+
+      <div class="col-xs-12 col-sm-10" style="background: #fff; min-height:700px;">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="main_top.jsp">Home</a></li>
+              <li class="breadcrumb-item"><a href='<s:url action="ItemListAction"></s:url>'>コンピューター・IT</a></li>
+              <s:if test="itemGenre!=null">
+              <li class="breadcrumb-item active"><s:property value="%{itemList.get(0).getItemGenre()}"/></li>
+              </s:if>
+          </ol>
 
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -64,26 +67,21 @@
           </div>
           <div class="panel-body">
             <div class="row">
+            <s:iterator value="itemList">
                 <div class="col-xs-12 col-sm-2">
-                    <div class="thumbnail" style="text-align:center;padding-top:10px;">
-                        <a href="">
-                            <img src="./img/noImage.png"class="img-responsive" alt="" style="height: auto; width: auto; min-height: 150px; min-width: 150px;">
-                        </a>
+                    <div class="thumbnail" style="padding-top:10px;min-height:420px;">
+                        <a href='<s:url action="ItemDetailAction"><s:param name="itemId" value="%{itemId}"/></s:url>'>
+                            <img src="./img/Product/<s:property value="itemImg01"/>"class="img-responsive" alt="" style="height: auto; width: auto; min-height: 150px; min-width: 150px;">
+
                         <div class="caption">
-                            <p><b>すっきりわかるJava入門</b></p>
-                            <p>aaaaaaaa</p>
-                            <p style="margin-bottom:0px"><a href="" class="btn btn-warning">カートへ</a></p>
+                            <p><b><s:property value="itemName"/></b></p>
+                            <p><s:property value="itemAuthor"/></p>
+                            <p><fmt:formatNumber value="${price}" />円</p>
                         </div>
+                        </a>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
+                </s:iterator>
             </div>
           </div>
           <div class="panel-footer">ページネーション</div>

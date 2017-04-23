@@ -57,7 +57,7 @@ public class CartSelectDAO {
 	 * @return PS
 	 * @throws SQLException
 	 */
-	private PreparedStatement createPreparedStatement(Connection con, int userId,int itemId ,boolean isAll) throws SQLException {
+	private static PreparedStatement createPreparedStatement(Connection con, int userId,int itemId ,boolean isAll) throws SQLException {
 		String sql = "select * from cart where user_id = ?";
 		if(itemId!=0&&!(isAll)){
 			sql += " "+"and item_id = ?";

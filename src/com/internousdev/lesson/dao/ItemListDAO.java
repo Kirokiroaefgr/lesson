@@ -21,15 +21,14 @@ public class ItemListDAO {
 	private int amountSearch;
 	private int amountSort;
 
-	public ItemListDAO(){
+	public ItemListDAO() {
 	}
 
-	public ItemListDAO( int pageNum, int amountSearch, int amountSort){
-		this.pageNum=pageNum;
-		this.amountSearch=amountSearch;
-		this.amountSort=amountSort;
+	public ItemListDAO(int pageNum, int amountSearch, int amountSort) {
+		this.pageNum = pageNum;
+		this.amountSearch = amountSearch;
+		this.amountSort = amountSort;
 	}
-
 
 	/**
 	 * 商品一覧画面において、検索したDBから抽出するメソッド
@@ -70,14 +69,14 @@ public class ItemListDAO {
 			sql = "SELECT * FROM item where item_id=?";
 		}
 
-			if (this.amountSort == 1) {
-				sql += " order by price desc";
-			} else if(this.amountSort==2){
-				sql += " order by price";
-			}
-			if(itemId==0){
-				sql += " limit ?,12";
-			}
+		if (this.amountSort == 1) {
+			sql += " order by price desc";
+		} else if (this.amountSort == 2) {
+			sql += " order by price";
+		}
+		if (itemId == 0) {
+			sql += " limit ?,12";
+		}
 
 		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 
@@ -86,7 +85,7 @@ public class ItemListDAO {
 				ps.setInt(2, this.pageNum);
 			} else if (itemId != 0) {
 				ps.setInt(1, itemId);
-			}else{
+			} else {
 				ps.setInt(1, this.pageNum);
 			}
 

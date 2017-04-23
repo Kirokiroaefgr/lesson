@@ -106,42 +106,42 @@
           <!-- ページネーションここから-->
           <div class="panel-footer">
               <s:if test="maxPage>0">
-                  <nav aria-label="Page navigation example">
+                  <nav aria-label="Page navigation">
                       <ul class="pagination" >
-                          <li class="page-item <s:if test="pageNum<=1">disabled</s:if>">
-                              <a class="page-link" href= '<s:url action="ItemListAction">
+                          <li class=" <s:if test="pageNum<=1">disabled</s:if>">
+                              <a  href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
                                   <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="pageNum" value="1"/>
                                   <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>最初のページ</a>
                           </li>
-                          <s:if test="pageNum<=1"><li class='page-item disabled'><a class="page-link" href= '#'>前のページへ</a></li></s:if>
-                          <s:else><li class='page-item'>
-                              <a class="page-link" href= '<s:url action="ItemListAction">
+                          <s:if test="pageNum<=1"><li class='page-item disabled'><a >前のページへ</a></li></s:if>
+                          <s:else><li >
+                              <a href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
                                   <s:param name="pageNum" value="%{pageNum-1}"/>
                                   <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>前のページへ</a></li>
                           </s:else>
                           <s:iterator value="page" status="st">
-                              <li class='page-item <s:if test="pageNum==page[#st.count-1]">active</s:if>'>
-                                  <a class="page-link" href= '<s:url action="ItemListAction">
+                              <li class=' <s:if test="pageNum==page[#st.count-1]">active</s:if>'>
+                                  <a  href= '<s:url action="ItemListAction">
                                       <s:param name="itemGenre" value="%{itemGenre}"/>
                                       <s:param name="amountSort" value="%{amountSort}"/>
                                       <s:param name="pageNum" value="%{page[#st.count-1]}"/>
                                       <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'><s:property/></a>
                               </li>
                           </s:iterator>
-                          <s:if test="maxPage<=pageNum"><li class="page-item disabled"><a class="page-link" href='#'>次のページへ</a></li></s:if>
-                          <s:else><li class="page-item">
-                              <a class="page-link" href= '<s:url action="ItemListAction">
+                          <s:if test="maxPage<=pageNum"><li class="page-item disabled"><a>次のページへ</a></li></s:if>
+                          <s:else><li>
+                              <a  href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
                                   <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="pageNum" value="%{pageNum+1}"/>
                                   <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>次のページへ</a></li>
                           </s:else>
-                          <li class="page-item <s:if test='maxPage<=pageNum'>disabled</s:if>">
-                              <a class="page-link" href= '<s:url action="ItemListAction">
+                          <li class=" <s:if test='maxPage<=pageNum'>disabled</s:if>">
+                              <a  href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
                                   <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="pageNum" value="%{maxPage}"/>

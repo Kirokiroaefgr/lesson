@@ -62,7 +62,7 @@ public class CartAssist extends ActionSupport{
 	public int totalNumber(int cartNumber,int orderNumber, int itemId) {
 		ItemListDAO itemStock = new ItemListDAO();
 		List<ItemDTO> itemList = new ArrayList<>();
-		itemList = itemStock.itemSelect(null,itemId,0,0);
+		itemList = itemStock.itemSelect(null,itemId);
 		int stock = Math.min(itemList.get(0).getStock(), 99);
 		this.totalNumber = Math.min(cartNumber + orderNumber, stock);
 		return this.totalNumber;

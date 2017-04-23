@@ -39,60 +39,58 @@
               <div class="col-xs-12 col-sm-9">
                   <strong>Lessonネットショッピング</strong>
                   <div class="table-responsive" >
-                  <table class="table table-hover" >
-                      <thead>
-                          <tr>
-                              <th>商品名</th>
-                              <th>数量</th>
-                              <th>価格</th>
-                          </tr>
-                      </thead>
-                      <s:iterator value="cartList">
-                      <tbody>
-                          <tr>
-                              <td style="">
-                                  <div class="col-xs-12" style="min-width:400px;height:170px;">
-                                      <div class="col-xs-3">
-                                          <a href="">
-                                              <img src="./img/Product/<s:property value="itemImg01"/>"class="img-responsive" alt="" style="min-height: 70px; min-width: 70px; margin-top:10px;">
-                                          </a>
-                                      </div>
-                                      <div class="col-xs-9" style="padding:0; margin-top:-20px;">
-                                          <h3 style="white-space: normal;"><s:property value="itemName"/></h3><br>
-                                          <p><b>価格：<fmt:formatNumber value="${subtotal*1.08}" pattern="###,###,###"/>円(税込)</b></p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <s:form action="CartInsertAction">
-                                      <s:hidden name="itemId" value="%{itemId}" />
-
-                                      <div class="row" style="width: 150px;">
-                                          <div class="col-xs-4" style="padding: -5px;">
-                                              <button type="button" class="btn btn-default" onclick="minus('${itemId}')">-</button>
-                                          </div>
-
-                                          <div class="col-xs-4" style="padding: 0px;">
-                                              <div class="form-group">
-                                                  <input type="text" class="form-control" id="${itemId}"name="orderNumber" value="${orderCount}" maxlength="2"pattern="[0-9]*">
+                      <table class="table table-hover" >
+                          <thead>
+                              <tr>
+                                  <th>商品名</th>
+                                  <th>数量</th>
+                                  <th>価格</th>
+                              </tr>
+                          </thead>
+                          <s:iterator value="cartList">
+                              <tbody>
+                                  <tr>
+                                      <td style="">
+                                          <div class="col-xs-12" style="min-width:400px;height:170px;">
+                                              <div class="col-xs-3">
+                                                  <a href="">
+                                                      <img src="./img/Product/<s:property value="itemImg01"/>"class="img-responsive" alt="" style="min-height: 70px; min-width: 70px; margin-top:10px;">
+                                                  </a>
+                                              </div>
+                                              <div class="col-xs-9" style="padding:0; margin-top:-20px;">
+                                                  <h3 style="white-space: normal;"><s:property value="itemName"/></h3><br>
+                                                  <p><b>価格：<fmt:formatNumber value="${subtotal*1.08}" pattern="###,###,###"/>円(税込)</b></p>
                                               </div>
                                           </div>
+                                      </td>
+                                      <td>
+                                          <s:form action="CartInsertAction">
+                                              <s:hidden name="itemId" value="%{itemId}" />
+                                              <div class="row" style="width: 150px;">
+                                                  <div class="col-xs-4" style="padding: -5px;">
+                                                      <button type="button" class="btn btn-default" onclick="minus('${itemId}')">-</button>
+                                                  </div>
 
-                                          <div class="col-xs-4" style="padding: 0px 5px;">
-                                              <button type="button" class="btn btn-default"onclick="plus('${itemId}')">+</button>
-                                          </div>
-                                      </div>
+                                                  <div class="col-xs-4" style="padding: 0px;">
+                                                      <div class="form-group">
+                                                          <input type="text" class="form-control" id="${itemId}"name="orderNumber" value="${orderCount}" maxlength="2"pattern="[0-9]*">
+                                                      </div>
+                                                  </div>
 
-                                      <div class="col-xs-12" style="padding: 32px 0px 0px 0px;">
-                                          <button type="submit" class="btn btn-primary center-block">更新</button>
-                                      </div>
-                                  </s:form>
-                              </td>
-                              <td style="width: 150px;">価格：<fmt:formatNumber value="${orderCount*subtotal*1.08}" pattern="###,###,###"/>円(税込)</td>
-                          </tr>
-                      </tbody>
-                      </s:iterator>
-                  </table>
+                                                  <div class="col-xs-4" style="padding: 0px 5px;">
+                                                      <button type="button" class="btn btn-default"onclick="plus('${itemId}')">+</button>
+                                                  </div>
+                                              </div>
+                                              <div class="col-xs-12" style="padding: 32px 0px 0px 0px;">
+                                                  <button type="submit" class="btn btn-primary center-block">更新</button>
+                                              </div>
+                                          </s:form>
+                                      </td>
+                                      <td style="width: 150px;">価格：<fmt:formatNumber value="${orderCount*subtotal*1.08}" pattern="###,###,###"/>円(税込)</td>
+                                  </tr>
+                              </tbody>
+                          </s:iterator>
+                      </table>
                   </div>
               </div>
 

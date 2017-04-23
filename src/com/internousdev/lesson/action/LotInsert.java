@@ -12,7 +12,7 @@ public class LotInsert  extends ActionSupport {
 	public String execute()  {
 		int aa = 0;
 		DBConnector db = new DBConnector("lesson");
-		String sql = "insert into item (item_name,item_genre,item_Author,release_date,page,isbm,price,item_detail,item_img01,stock) values(?,?,'lesson',?,?,123,?,'asdgfhklafeaffaw','noImage.png',50)";
+		String sql = "insert into item (item_name,item_genre,item_author,release_date,page,isbm,price,item_detail,item_img01,stock) values(?,?,'lesson',?,?,123,?,'asdgfhklafeaffaw','noImage.png',50)";
 		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 			for(int i=0; i<200;i++){
 				String ai="a"+i;

@@ -45,7 +45,7 @@ public class CartUpdateDAO {
 	private PreparedStatement createPreparedStatement(Connection con, int userId, int itemId, int orderNumber,
 			boolean isInsert) throws SQLException {
 		ItemListDAO itemDao = new ItemListDAO();
-		List<ItemDTO> item = itemDao.itemSelect(null,itemId,0,0);
+		List<ItemDTO> item = itemDao.itemSelect(null,itemId);
 		String sql;
 		if (isInsert) {
 			sql = "insert into cart (order_count,user_id,item_id,item_name,subtotal,item_Img01) values (?,?,?,?,?,?)";

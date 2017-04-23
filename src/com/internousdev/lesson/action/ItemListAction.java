@@ -17,6 +17,7 @@ public class ItemListAction extends ActionSupport {
 	private String itemGenre;
 	private int pageNum;
 	private int maxPage;
+	private int amountSearch;
 	private int amountSort;
 	/**
 	 *  ページ数を格納する配列
@@ -40,14 +41,13 @@ public class ItemListAction extends ActionSupport {
 
 		GenreDAO genreDao= new GenreDAO();
 		genreList = genreDao.selectGenre(itemGenre);
-
-		ItemListDAO itemDao =new ItemListDAO();
 		minShowingItemCount=(pageNum-1)*12;
-		itemList=itemDao.itemSelect(itemGenre,0,minShowingItemCount,amountSort);
+		ItemListDAO itemDao =new ItemListDAO(minShowingItemCount,amountSearch,amountSort);
+		itemList=itemDao.itemSelect(itemGenre,0);
 
 
 		minShowingItemCount++;
-		itemCount=itemDao.countSelect(itemGenre,amountSort);
+		itemCount=itemDao.countSelect(itemGenre);
 		maxShowingItemCount=pageNum*12;
 		if(itemCount<maxShowingItemCount){
 			maxShowingItemCount=itemCount;
@@ -114,6 +114,34 @@ public class ItemListAction extends ActionSupport {
 	 */
 	public void setMaxPage(int maxPage) {
 		this.maxPage = maxPage;
+	}
+
+	/**
+	 * @return amountSearch
+	 */
+	public int getAmountSearch() {
+		return amountSearch;
+	}
+
+	/**
+	 * @param amountSearch セットする amountSearch
+	 */
+	public void setAmountSearch(int amountSearch) {
+		this.amountSearch = amountSearch;
+	}
+
+	/**
+	 * @return amountSort
+	 */
+	public int getAmountSort() {
+		return amountSort;
+	}
+
+	/**
+	 * @param amountSort セットする amountSort
+	 */
+	public void setAmountSort(int amountSort) {
+		this.amountSort = amountSort;
 	}
 
 	/**
@@ -198,20 +226,6 @@ public class ItemListAction extends ActionSupport {
 	 */
 	public void setGenreList(List<GenreDTO> genreList) {
 		this.genreList = genreList;
-	}
-
-	/**
-	 * @return amountSort
-	 */
-	public int getAmountSort() {
-		return amountSort;
-	}
-
-	/**
-	 * @param amountSort セットする amountSort
-	 */
-	public void setAmountSort(int amountSort) {
-		this.amountSort = amountSort;
 	}
 
 

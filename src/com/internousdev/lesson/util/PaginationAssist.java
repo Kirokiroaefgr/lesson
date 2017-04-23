@@ -21,7 +21,7 @@ public class PaginationAssist {
 		final int AROUNDPAGE=PAGINATION/2;
 		minPage = Math.max(pageNum - AROUNDPAGE, 1);
 		if (maxPage < pageNum + AROUNDPAGE && maxPage > AROUNDPAGE+1) {
-			minPage = maxPage+1-PAGINATION;
+			minPage = Math.max((maxPage+1-PAGINATION),1);
 		}
 		int maxPagination = Math.min(PAGINATION, maxPage);
 		page = new int[maxPagination];

@@ -35,21 +35,21 @@
 			        </div>
               <div class="panel panel-primary">
                   <div class="panel-heading"> カテゴリー</div>
-                      <ul class="nav nav-pills nav-stacked">
-                          <li><a href='<s:url action="ItemListAction"></s:url>'> &lt;コンピューター・IT</a></li>
-                          <s:iterator value="genreList">
-                              <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'>
-                                  <s:if test='choiceGenre==itemGenre'>&lt;</s:if><s:else><i class="glyphicon glyphicon-book"></i></s:else> <s:property value="%{itemGenre}"/></a>
-                              </li>
-                          </s:iterator>
-                      </ul>
+                  <ul class="nav nav-pills nav-stacked">
+                      <li><a href='<s:url action="ItemListAction"></s:url>'> &lt;コンピューター・IT</a></li>
+                      <s:iterator value="genreList">
+                          <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/></s:url>'>
+                              <s:if test='choiceGenre==itemGenre'>&lt;</s:if><s:else><i class="glyphicon glyphicon-book"></i></s:else> <s:property value="%{itemGenre}"/></a>
+                          </li>
+                      </s:iterator>
+                  </ul>
                   <div class="panel-body">条件を絞り込んで探す</div>
                   <p class="text-center"> 価格</p>
                   <ul class="nav nav-pills nav-stacked">
-                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSort" value="1"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 0円~1,000円</a></li>
-                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSort" value="2"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 1,001円~2,000円</a></li>
-                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSort" value="3"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 2,001円~5,000円</a></li>
-                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSort" value="4"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 5,001円~</a></li>
+                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSearch" value="1"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 0円~1,000円</a></li>
+                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSearch" value="2"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 1,001円~2,000円</a></li>
+                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSearch" value="3"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 2,001円~5,000円</a></li>
+                     <li><a href='<s:url action="ItemListAction"><s:param name="itemGenre" value="%{itemGenre}"/><s:param name="amountSearch" value="4"/></s:url>'><i class="glyphicon glyphicon-usd"></i> 5,001円~</a></li>
                   </ul>
               </div>
           </div>
@@ -63,10 +63,26 @@
               </ol>
           <div class="panel panel-default">
               <div class="panel-heading">
-                  <s:if test="itemCount!=0">全<s:property value="itemCount"/>件中<s:property value="minShowingItemCount"/>～<s:property value="maxShowingItemCount"/>件を表示</s:if>
+                  <s:if test="itemCount!=0">全<s:property value="itemCount"/>件中<s:property value="minShowingItemCount"/>～<s:property value="maxShowingItemCount"/>件を表示
+                      <ul class="list-inline">
+                          <li>並べ替え : おすすめ順 | 新着順</li>
+                          <li>|</li>
+                          <li><a href='<s:url action="ItemListAction">
+                              <s:param name="itemGenre" value="%{itemGenre}"/>
+                              <s:param name="amountSort" value="2"/>
+                              <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>価格の安い順</a>
+                          </li>
+                          <li>|</li>
+                          <li><a href='<s:url action="ItemListAction">
+                              <s:param name="itemGenre" value="%{itemGenre}"/>
+                              <s:param name="amountSort" value="1"/>
+                              <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>価格の高い順</a>
+                          </li>
+                      </ul>
+                  </s:if>
                   <s:else>商品が見つかりませんでした。</s:else>
-<!--               並べ替え : おすすめ順 | 新着順 | 価格の安い順 | 価格の高い順 | 売れ筋順 -->
               </div>
+
               <s:if test="itemCount!=0">
                   <div class="panel-body">
                       <div class="row">
@@ -95,36 +111,41 @@
                           <li class="page-item <s:if test="pageNum<=1">disabled</s:if>">
                               <a class="page-link" href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
+                                  <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="pageNum" value="1"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/></s:url>'>最初のページ</a>
+                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>最初のページ</a>
                           </li>
                           <s:if test="pageNum<=1"><li class='page-item disabled'><a class="page-link" href= '#'>前のページへ</a></li></s:if>
                           <s:else><li class='page-item'>
                               <a class="page-link" href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
                                   <s:param name="pageNum" value="%{pageNum-1}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/></s:url>'>前のページへ</a></li>
+                                  <s:param name="amountSort" value="%{amountSort}"/>
+                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>前のページへ</a></li>
                           </s:else>
                           <s:iterator value="page" status="st">
                               <li class='page-item <s:if test="pageNum==page[#st.count-1]">active</s:if>'>
                                   <a class="page-link" href= '<s:url action="ItemListAction">
                                       <s:param name="itemGenre" value="%{itemGenre}"/>
+                                      <s:param name="amountSort" value="%{amountSort}"/>
                                       <s:param name="pageNum" value="%{page[#st.count-1]}"/>
-                                      <s:param name="amountSort" value="%{amountSort}"/></s:url>'><s:property/></a>
+                                      <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'><s:property/></a>
                               </li>
                           </s:iterator>
                           <s:if test="maxPage<=pageNum"><li class="page-item disabled"><a class="page-link" href='#'>次のページへ</a></li></s:if>
                           <s:else><li class="page-item">
                               <a class="page-link" href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
+                                  <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="pageNum" value="%{pageNum+1}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/></s:url>'>次のページへ</a></li>
+                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>次のページへ</a></li>
                           </s:else>
                           <li class="page-item <s:if test='maxPage<=pageNum'>disabled</s:if>">
                               <a class="page-link" href= '<s:url action="ItemListAction">
                                   <s:param name="itemGenre" value="%{itemGenre}"/>
+                                  <s:param name="amountSort" value="%{amountSort}"/>
                                   <s:param name="pageNum" value="%{maxPage}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/></s:url>'>最後のページ（<s:property value="maxPage"/>）</a>
+                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>最後のページ（<s:property value="maxPage"/>）</a>
                           </li>
                       </ul>
                   </nav>

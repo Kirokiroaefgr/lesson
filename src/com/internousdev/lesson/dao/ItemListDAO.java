@@ -11,12 +11,26 @@ import com.internousdev.lesson.dto.ItemDTO;
 import com.internousdev.util.DBConnector;
 
 /**
- * 商品を一覧表示するためのクラス
+ * 商品を一覧表示とソート機能を実現するためのクラス
  *
  * @author KEIGO NISHIMORI
  * @since 2017/04/21
  */
 public class ItemListDAO {
+	private int pageNum;
+	private int amountSearch;
+	private int amountSort;
+
+	public ItemListDAO(){
+	}
+
+	public ItemListDAO( int pageNum, int amountSearch, int amountSort){
+		this.pageNum=pageNum;
+		this.amountSearch=amountSearch;
+		this.amountSort=amountSort;
+	}
+
+
 	/**
 	 * 商品一覧画面において、検索したDBから抽出するメソッド
 	 *
@@ -24,45 +38,56 @@ public class ItemListDAO {
 	 *            商品カテゴリ
 	 * @return searchList
 	 */
-	public List<ItemDTO> itemSelect(String itemGenre, int itemId, int pageNum, int amountSort) {
+	public List<ItemDTO> itemSelect(String itemGenre, int itemId) {
 		DBConnector db = new DBConnector("lesson");
 		List<ItemDTO> itemList = new ArrayList<>();
-		String sql = "SELECT * FROM item limit ?,12";
+		String sql = "SELECT * FROM item";
 
-		if (amountSort != 0) {
+		if (this.amountSearch != 0) {
 			if (itemGenre != null) {
 				sql = "select * from item where item_genre=? and";
 			} else {
 				sql = "select * from item where";
 			}
-			switch (amountSort) {
+
+			switch (this.amountSearch) {
 			case 1:
-				sql += " price>=0 and price<=1000  limit ?,12";
+				sql += " price>=0 and price<=1000";
 				break;
 			case 2:
-				sql += " price>=1001 and price<=2000  limit ?,12";
+				sql += " price>=1001 and price<=2000";
 				break;
 			case 3:
-				sql += " price>=2001 and price<=5000  limit ?,12";
+				sql += " price>=2001 and price<=5000";
 				break;
 			case 4:
-				sql += " price>=5001 limit ?,12";
+				sql += " price>=5001";
 				break;
 			}
 		} else if (itemGenre != null) {
-			sql = "SELECT * FROM item WHERE item_genre = ? limit ?,12";
+			sql = "SELECT * FROM item WHERE item_genre = ?";
 		} else if (itemId != 0) {
 			sql = "SELECT * FROM item where item_id=?";
 		}
 
+			if (this.amountSort == 1) {
+				sql += " order by price desc";
+			} else if(this.amountSort==2){
+				sql += " order by price";
+			}
+			if(itemId==0){
+				sql += " limit ?,12";
+			}
+
 		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 
-			ps.setInt(1, pageNum);
 			if (itemGenre != null) {
 				ps.setString(1, itemGenre);
-				ps.setInt(2, pageNum);
+				ps.setInt(2, this.pageNum);
 			} else if (itemId != 0) {
 				ps.setInt(1, itemId);
+			}else{
+				ps.setInt(1, this.pageNum);
 			}
 
 			ResultSet rs = ps.executeQuery();
@@ -90,18 +115,18 @@ public class ItemListDAO {
 		return itemList;
 	}
 
-	public int countSelect(String itemGenre, int amountSort) {
+	public int countSelect(String itemGenre) {
 		int count = 0;
 		DBConnector db = new DBConnector("lesson");
 		String sql = "select count(item_genre) from item";
 
-		if (amountSort != 0) {
+		if (this.amountSearch != 0) {
 			if (itemGenre != null) {
 				sql = "select count(item_genre) from item where item_genre=? and";
 			} else {
 				sql = "select count(item_genre) from item where";
 			}
-			switch (amountSort) {
+			switch (this.amountSearch) {
 			case 1:
 				sql += " price>=0 and price<=1000";
 				break;
@@ -125,7 +150,6 @@ public class ItemListDAO {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			count = rs.getInt(1);
-			System.out.println(count);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

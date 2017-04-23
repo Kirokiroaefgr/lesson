@@ -18,73 +18,46 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse" role="navigation" style="background: rgba(193,232,177,.7);border-color:rgba(255,255,255,.5);">
-		<div class="container-fuild">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="main_top.jsp"><img
-					src="./img/lesson.png" alt="hogehoge" class="img-responsive"></a>
-			</div>
+    <nav class="navbar navbar-inverse" role="navigation" style="background: rgba(193,232,177,.7);border-color:rgba(255,255,255,.5);">
+        <div class="container-fuild">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="main_top.jsp"><img src="./img/lesson.png" alt="hogehoge" class="img-responsive"></a>
+            </div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse "
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="main_top.jsp"><span
-							class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
-								<li><a
-									href='<s:url action="ItemListAction"></s:url>'><span class="glyphicon glyphicon-gift"aria-hidden="true"></span> 商品</a></li>
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="main_top.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
+                    <li><a href='<s:url action="ItemListAction"></s:url>'><span class="glyphicon glyphicon-gift"aria-hidden="true"></span> 商品</a></li>
 
-
-					<li><a href="inquiry.jsp"><span
-							class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-							お問い合わせ</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-									<li><a href='<s:url action="CartInsertAction"></s:url>'><span
-							class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-							カート</a></li>
-					<s:if test="#session.userId != null">
-						<li class="dropdown"><a href="" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>ようこそ！<s:property
-									value="#session.name" />さん <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a
-									href='<s:url action="MypageAction"></s:url>'><span
-										class="glyphicon glyphicon-user" aria-hidden="true"></span>
-										マイページ</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href='<s:url action="LogOutAction"></s:url>'><span
-										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-										ログアウト</a></li>
-							</ul></li>
-					</s:if>
-					<s:else>
-						<li><a href="login.jsp"><span
-								class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-								ログイン</a></li>
-					</s:else>
-				</ul>
+                    <li><a href="inquiry.jsp"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>お問い合わせ</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href='<s:url action="CartInsertAction"></s:url>'><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>カート</a></li>
+                    <s:if test="#session.userId != null">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>ようこそ！<s:property value="#session.name" />さん <span class="caret"></span>
+                            </a>
+                           <ul class="dropdown-menu">
+                                <li><a href='<s:url action="MypageAction"></s:url>'><span class="glyphicon glyphicon-user" aria-hidden="true"></span>マイページ</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href='<s:url action="LogOutAction"></s:url>'><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>ログアウト</a></li>
+                            </ul>
+                        </li>
+                    </s:if>
+                    <s:else>
+                        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>ログイン</a></li>
+                    </s:else>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
-			</div>
-		</div>
-	</nav>
-
-
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script
-		src="./js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
 </body>
 </html>

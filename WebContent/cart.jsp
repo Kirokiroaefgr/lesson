@@ -83,10 +83,11 @@
                                                   </div>
                                               </div>
 
-                                          </s:form>
+
                                           <div class="col-xs-5" style="padding:0px;">
                                               <button type="submit" id="form01" class="btn btn-primary center-block">更新</button>
                                           </div>
+                                          </s:form>
                                           <div class="col-xs-6">
                                           <s:form action="CartDeleteAction">
                                               <s:hidden name="userId" value="%{userId}" />

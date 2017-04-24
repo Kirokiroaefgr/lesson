@@ -26,28 +26,62 @@
     </div>
     <%--ヘッダー --%>
 
-    <div class="col-xs-12 col-sm-12 col-lg-9">
+    <div class="col-xs-12">
+    <div class="row">
         <s:form>
+        <legend style="padding-top:30px;">決済入力画面</legend>
             <div class="form-group">
-                <div class="col-xs-3">
-                    <label style="padding-top:60px;">カードの種類を選んでください。</label>
+                <div class="col-xs-12 text-center">
+                    <label>カードの種類を選んでください。</label>
                 </div>
-                <div class="col-xs-9">
-                <label><input type="radio" name="creditBrand" value="1"><img src="./img/visa.png" style="width:150px;"></label>
-                <label><input type="radio" name="creditBrand" value="1"><img src="./img/mastercard.png" style="width:150px;"></label>
-                <label><input type="radio"name="creditBrand" value="1"><img src="./img/amex.png" style="width:150px;"></label>
+                <div class="col-xs-10 col-xs-offset-2">
+                <label><input type="radio" name="creditBrand" value="1"><img src="./img/visa.png" style="min-width:80px;"></label>
+                <label><input type="radio" name="creditBrand" value="1"><img src="./img/mastercard.png" style="min-width:80px;"></label>
+                <label><input type="radio"name="creditBrand" value="1"><img src="./img/amex.png" style="min-width:80px;"></label>
                 </div>
             </div>
+
             <div class="form-group">
-                <div class="col-xs-3 col-xs-offset-2">
-                    <label>カード番号</label>
+               <div class="col-xs-5 col-xs-offset-1">
+                    <label>お届け先の住所</label>
                 </div>
+                <div class="col-xs-6">
+                    <input type="text"  placeholder="" >
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-5 col-xs-offset-1">
+                    <label>カード名義</label>
+                </div>
+                <div class="col-xs-6">
+                    <input type="text"  placeholder="" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-5 col-xs-offset-1">
+                    <label>カード番号<span class="label label-danger">必須</span></label>
+                </div>
+                <div class="col-xs-6">
                     <input type="text" placeholder="" >
+                </div>
             </div>
+
             <div class="form-group">
-                <div class="col-xs-3 col-xs-offset-2">
+                <div class="col-xs-6 col-sm-5 col-sm-offset-1">
+                    <label >セキュリティーコード</label>
+                </div>
+                <div class="col-xs-6 col-sm-6" >
+                    <input type="text" placeholder="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-5 col-xs-offset-1">
                     <label>有効期限</label>
                 </div>
+                <div class="col-xs-6">
                     <select  >
                         <option value="">1</option>
                         <option value="">2</option>
@@ -62,39 +96,26 @@
                         <option value="">11</option>
                         <option value="">12</option>
                     </select>月
-                         <select  >
+                    <select  >
                           <option>1</option>
                         <option>2</option>
                     </select>年
+                </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-xs-5 col-sm-4 col-sm-offset-1 col-lg-3 col-lg-offset-2">
-                    <label>セキュリティーコード</label>
-                </div>
-                    <input type="text" placeholder="" >
-            </div>
 
-            <div class="form-group">
-                <div class="col-xs-3 col-xs-offset-2">
-                    <label>カード名義</label>
-                </div>
-                    <input type="text"  placeholder="" >
-            </div>
 
-            <div class="form-group">
-               <div class="col-xs-3 col-xs-offset-2">
-                    <label>お届け先の住所</label>
-                </div>
-                    <input type="text"  placeholder="" >
-            </div>
+
+
+
             <div class="col-xs-12">
                 <button  type="submit" class="btn btn-primary center-block ">入力内容を確認</button>
             </div>
 
         </s:form>
+        </div>
     </div>
-              <div class="col-xs-12 col-sm-12 col-lg-3">
+              <div class="col-xs-12 col-sm-3">
                   <div class="panel panel-default">
                       <div class="panel-heading" style="background:#fde8d0">
                           <div class="well">

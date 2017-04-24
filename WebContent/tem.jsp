@@ -15,11 +15,11 @@
 <!-- <link rel="stylesheet" href="./css/main.css"> -->
 <%--共通jsの読み込み --%>
 <%-- <script src="./js/main.js"></script> --%>
-<title>Template</title>
+<title>決済入力画面</title>
 </head>
 <body>
   <div class="container">
-    <%--　ヘッダー --%>
+    <%-- ヘッダー --%>
     <div class="row">
       <div class="col-xs-12 col-sm-12" style="background: #fff;">
         <jsp:include page="header.jsp" /></div>
@@ -31,9 +31,7 @@
 
     <%--フッター(ただの文字　未完成) --%>
     <div class="row">
-      <div class="col-xs-12 col-sm-12 text-center"
-        style="background: #fff;">
-        <p id="pageTop"><a href="#">⇧</a></p>
+      <div class="col-xs-12 col-sm-12 text-center" style="background: #fff;">
         <hr class="style-one">
         <h1 style="margin: 3rem auto;">会社概要 利用規約</h1>
       </div>

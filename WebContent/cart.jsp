@@ -64,14 +64,15 @@
                                           </div>
                                       </td>
                                       <td>
-                                          <s:form action="CartInsertAction">
+
+                                          <s:form action="CartInsertAction" id="form01">
                                               <s:hidden name="itemId" value="%{itemId}" />
                                               <div class="row" style="width: 150px;">
                                                   <div class="col-xs-4" style="padding: -5px;">
                                                       <button type="button" class="btn btn-default" onclick="minus('${itemId}')">-</button>
                                                   </div>
 
-                                                  <div class="col-xs-4" style="padding: 0px;">
+                                                  <div class="col-xs-4" style="padding: 0px 0px 0px 3px;">
                                                       <div class="form-group">
                                                           <input type="text" class="form-control" id="${itemId}"name="orderNumber" value="${orderCount}" maxlength="2"pattern="[0-9]*">
                                                       </div>
@@ -81,10 +82,18 @@
                                                       <button type="button" class="btn btn-default"onclick="plus('${itemId}')">+</button>
                                                   </div>
                                               </div>
-                                              <div class="col-xs-12" style="padding: 32px 0px 0px 0px;">
-                                                  <button type="submit" class="btn btn-primary center-block">更新</button>
-                                              </div>
+
                                           </s:form>
+                                          <div class="col-xs-5" style="padding:0px;">
+                                              <button type="submit" id="form01" class="btn btn-primary center-block">更新</button>
+                                          </div>
+                                          <div class="col-xs-6">
+                                          <s:form action="CartDeleteAction">
+                                              <s:hidden name="userId" value="%{userId}" />
+                                              <s:hidden name="itemId" value="%{itemId}" />
+                                              <button type="submit" class="btn btn-default">削除</button>
+                                          </s:form>
+                                          </div>
                                       </td>
                                       <td style="width: 150px;">価格：<fmt:formatNumber value="${orderCount*subtotal*1.08}" pattern="###,###,###"/>円(税込)</td>
                                   </tr>

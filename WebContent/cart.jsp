@@ -37,6 +37,8 @@
               </div>
 
               <div class="col-xs-12 col-sm-9">
+                   <h2 style="color:red;"><s:property value="errorMessage"/></h2>
+                  <s:if test="cartList.size!=0">
                   <strong>Lessonネットショッピング</strong>
                   <div class="table-responsive" >
                       <table class="table table-hover" >
@@ -102,12 +104,13 @@
                           </s:iterator>
                       </table>
                   </div>
+                  </s:if>
               </div>
 
               <div class="col-xs-12 col-sm-3">
                   <div class="panel panel-default">
                       <div class="panel-heading" style="background:#fde8d0">
-                      <s:form action="LotInsert">
+                      <s:form action="GoSettlementAction">
                           <button type="submit" class="btn btn-warning center-block">ご注文手続きに進む</button></s:form>
                           <div class="well">
                               商品代金合計<br>

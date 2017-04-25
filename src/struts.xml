@@ -61,5 +61,28 @@
             <result name="error">cart.jsp</result>
         </action>
 
+        <!-- 決済入力画面への遷移 -->
+        <action name="GoSettlementAction" class="com.internousdev.lesson.action.GoSettlementAction" method="execute">
+            <result name="success">settlement.jsp</result>
+            <result name="error">cart.jsp</result>
+            <result name="login">login.jsp</result>
+        </action>
+
+        <!--  決済画面確認への遷移 -->
+        <action name="SettlementConfirmationAction" class="com.internousdev.lesson.action.SettlementConfirmationAction" method="execute">
+            <result name="success">settlement_confirmation.jsp</result>
+            <result name="error">settlement.jsp</result>
+            <result name="input">cart.jsp</result>
+            <result name="login">login.jsp</result>
+        </action>
+
+<!--         決済完了画面への遷移 -->
+<!--         <action name="SettlementAction" class="com.internousdev.lesson.action.SettlementAction" method="execute"> -->
+<!--             <result name="success">settlement_complete.jsp</result> -->
+<!--             <result name="error">settlement.jsp</result> -->
+<!--             <result name="input">cart.jsp</result> -->
+<!--             <result name="login">login.jsp</result> -->
+<!--         </action> -->
+
     </package>
 </struts>

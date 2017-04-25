@@ -60,7 +60,7 @@ public class GoSettlementAction extends ActionSupport implements SessionAware {
 		CartSelectDAO cartDao = new CartSelectDAO();
 		cartList = cartDao.selectCart(userId, 0, true);
 		if (cartList.size() <= 0) {
-			errorMessage = getText("lang.cart.no");
+			errorMessage = "カートに商品が入っておりません。";
 			return ERROR;
 		}
 		return SUCCESS;

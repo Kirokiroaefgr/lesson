@@ -18,30 +18,32 @@
 <title>Template</title>
 </head>
 <body>
-	<div class="container">
-		<%--　ヘッダー --%>
-		<div class="row">
-			<div class="col-xs-12 col-sm-12" >
-				<jsp:include page="header.jsp" /></div>
-		</div>
-		<%--ヘッダー --%>
-		<div class="col-xs-12 col-sm-12">
-			<div class="login-container">
-				<div id="output"></div>
-				<div class="avatar"></div>
-				<div class="form-box">
-					<s:form action="LoginAction">
-						<input name="email" type="text" placeholder="メールアドレス">
-						<input  name="password" type="password" placeholder="password">
-						<button class="btn btn-info btn-block login" type="submit">ログイン</button>
-					</s:form>
-				</div>
-			</div>
-		</div>
+    <div class="container">
+        <%--　ヘッダー --%>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12" >
+                <jsp:include page="header.jsp" /></div>
+            </div>
+            <%--ヘッダー --%>
+            <div class="col-xs-12 col-sm-12">
+                <div class="login-container">
+                    <div id="output"></div>
+                    <div class="avatar"></div>
+                    <div class="form-box">
+
+                        <p style="color:red;"><s:property value="errorMsg"/></p>
+                        <s:form action="LoginAction">
+                            <input name="email" type="text" placeholder="メールアドレス">
+                            <input  name="password" type="password" placeholder="password">
+                            <button class="btn btn-info btn-block login" type="submit">ログイン</button>
+                        </s:form>
+                     </div>
+                </div>
+            </div>
 
 
 
-		<%--フッター(ただの文字　未完成) --%>
+    <%--フッター(ただの文字　未完成) --%>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 text-center"
 				style="background: rgba(255,255,255,.0);">

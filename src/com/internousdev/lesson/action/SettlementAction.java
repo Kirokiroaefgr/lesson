@@ -107,9 +107,10 @@ public class SettlementAction extends CartAssist implements SessionAware {
 		cartList = cartDao.selectCart(userId, 0, true);
 		this.msg = StockCheck(cartList, userId, 0);
 		cartList = cartDao.selectCart(userId, 0, true);
+		this.order=totalOrder(cartList);
+		this.payment=payment(cartList);
 		if (msg.size() != 0) {
-			this.order=totalOrder(cartList);
-			this.payment=payment(cartList);
+
 			return INPUT;
 		}
 		if (cartList.size() != 0) {

@@ -43,15 +43,7 @@
 
 
 
-    <%--フッター(ただの文字　未完成) --%>
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 text-center"
-				style="background: rgba(255,255,255,.0);">
-				<hr class="style-one">
-				<h1 style="margin: 3rem auto;">会社概要 利用規約</h1>
-			</div>
-		</div>
-		<%--フッター --%>
+
 	</div>
 
 </body>

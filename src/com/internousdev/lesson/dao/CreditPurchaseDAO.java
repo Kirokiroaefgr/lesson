@@ -22,7 +22,7 @@ public class CreditPurchaseDAO extends ConnectionSupport {
 	/**
 	 * mysqlのcetusに接続
 	 */
-	Connection cetusCon = new DBConnector("cetus").getConnection();
+	Connection cetusCon = new DBConnector("lesson").getConnection();
 
 	/**
 	 * mysqlのvisa,mastercard,americanexpressいずれかに接続
@@ -65,9 +65,9 @@ public class CreditPurchaseDAO extends ConnectionSupport {
 		for (CartDTO cart : cartList) {
 			payment += cart.getSubtotal() * cart.getOrderCount();
 		}
-		String sql = "insert into user_history(login_id, corporation_name, spend, payment, name_e) values (?,  'cetus', ?, ?, ?)";
+		String sql = "insert into user_history(login_id, corporation_name, spend, payment, name_e) values (?,  'lesson', ?, ?, ?)";
 		if (creditBrand == 1) {
-			sql = "insert into user_history(login_id, office_name, spend, payment, last_name, first_name) values (?, 'cetus', ?, ?, ?, ?)";
+			sql = "insert into user_history(login_id, office_name, spend, payment, last_name, first_name) values (?, 'lesson', ?, ?, ?, ?)";
 		}
 		ps1 = creditCon.prepareStatement(sql);
 		creditCon.setAutoCommit(false);

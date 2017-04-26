@@ -69,19 +69,7 @@ create table brand(
 	brand_num int(6) not null
 	);
 
-create table credit(
-	user_id int not null,
-	credit_id int not null,
-	credit_number varchar(16) not null,
-	name_e varchar(50) not null,
-	security_code varchar(4) not null,
-	expiration_month varchar(2) not null,
-	expiration_year varchar(2) not null,
-	registration_date datetime not null default current_timestamp,
-	updated_date datetime not null default current_timestamp,
-	foreign key(credit_id)references brand(credit_id) on update cascade,
-	foreign key(user_id) references openconnect.users(user_id)
-	);
+
 
 /*TODO 商品担当 本番用インサート文です。 */
 

@@ -76,13 +76,13 @@
             <result name="login">login.jsp</result>
         </action>
 
-<!--         決済完了画面への遷移 -->
-<!--         <action name="SettlementAction" class="com.internousdev.lesson.action.SettlementAction" method="execute"> -->
-<!--             <result name="success">settlement_complete.jsp</result> -->
-<!--             <result name="error">settlement.jsp</result> -->
-<!--             <result name="input">cart.jsp</result> -->
-<!--             <result name="login">login.jsp</result> -->
-<!--         </action> -->
+        <!-- 決済完了画面への遷移 -->
+        <action name="SettlementAction" class="com.internousdev.lesson.action.SettlementAction" method="execute">
+            <result name="success">settlement_complete.jsp</result>
+            <result name="error">settlement.jsp</result>
+            <result name="input">cart.jsp</result>
+            <result name="login">login.jsp</result>
+        </action>
 
     </package>
 </struts>

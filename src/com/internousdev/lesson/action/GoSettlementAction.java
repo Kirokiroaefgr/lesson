@@ -8,13 +8,13 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.lesson.dao.CartSelectDAO;
 import com.internousdev.lesson.dto.CartDTO;
-import com.opensymphony.xwork2.ActionSupport;
+import com.internousdev.lesson.util.CartAssist;
 
 /**決済入力画面に遷移するためのクラス
  * @author KEIGO NISHIMORI
  *@since 2017/04/10
  */
-public class GoSettlementAction extends ActionSupport implements SessionAware {
+public class GoSettlementAction extends CartAssist implements SessionAware {
 
 	/**
 	 * シリアルID
@@ -59,6 +59,8 @@ public class GoSettlementAction extends ActionSupport implements SessionAware {
 		}
 		CartSelectDAO cartDao = new CartSelectDAO();
 		cartList = cartDao.selectCart(userId, 0, true);
+		payment=(int) payment(cartList);
+		order=(int) totalOrder(cartList);
 		if (cartList.size() <= 0) {
 			errorMessage = "カートに商品が入っておりません。";
 			return ERROR;

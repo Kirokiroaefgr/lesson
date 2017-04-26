@@ -38,8 +38,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>笹原</td>
-                    <td>VISA</td>
+                    <td><s:property value="name"/></td>
+                    <td>クレジットカード</td>
                 </tr>
                 <tr>
                     <td><s:property value="%{shippingAddress}" /></td>

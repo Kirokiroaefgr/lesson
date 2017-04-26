@@ -32,7 +32,7 @@
                     <li><a href="main_top.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
                     <li><a href='<s:url action="ItemListAction"></s:url>'><span class="glyphicon glyphicon-gift"aria-hidden="true"></span> 商品</a></li>
 
-                    <li><a href="inquiry.jsp"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>お問い合わせ</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href='<s:url action="CartInsertAction"></s:url>'><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>カート</a></li>

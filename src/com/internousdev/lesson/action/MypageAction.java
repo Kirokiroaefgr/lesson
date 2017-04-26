@@ -7,12 +7,15 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.lesson.dao.LoginDAO;
+import com.internousdev.lesson.dao.PurchaseDAO;
+import com.internousdev.lesson.dto.PurchaseDTO;
 import com.internousdev.lesson.dto.UsersDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class MypageAction extends ActionSupport implements SessionAware {
 	private int userId;
 	private List<UsersDTO> userList = new ArrayList<>();
+	private List<PurchaseDTO> purchaseList = new ArrayList<>();
 	private Map<String, Object> session;
 	public String execute() {
 		if(session.get("userId")==null){
@@ -21,6 +24,8 @@ public class MypageAction extends ActionSupport implements SessionAware {
 		userId= (int) session.get("userId");
 		LoginDAO dao = new LoginDAO();
 		userList=dao.select(null, null,userId);
+		PurchaseDAO pDao=new  PurchaseDAO();
+		purchaseList = pDao.PurchaseSelect(userId);
 		return SUCCESS;
 	}
 	/**
@@ -58,6 +63,12 @@ public class MypageAction extends ActionSupport implements SessionAware {
 	 */
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+	public List<PurchaseDTO> getPurchaseList() {
+		return purchaseList;
+	}
+	public void setPurchaseList(List<PurchaseDTO> purchaseList) {
+		this.purchaseList = purchaseList;
 	}
 
 

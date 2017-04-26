@@ -113,7 +113,7 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 		CartSelectDAO cartDao = new CartSelectDAO();
 		cartList = cartDao.selectCart(userId, 0, true);
 		if (cartList.size() <= 0) {
-			errorMessage = getText("lang.settlement.error04");
+			errorMessage = "カートに何も入ってません。";
 			return INPUT;
 		}
 		this.totalOrder=totalOrder(cartList);
@@ -123,13 +123,13 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 		/* クレジットカード番号の桁数をチェックする処理 */
 		checkNumber = creditNumber.substring(0, 6);
 		if (!(creditdao.select(creditBrand, checkNumber))) {
-			errorMessage = getText("lang.settlement.error01");
+			errorMessage = "クレジットカードの種類が違う可能性があります。";
 			return result;
 		}
 
 		UsersDTO userDto = creditdao.selectUserInfo(creditBrand, creditNumber,securityCode);
 		if (userDto.getPassword() == null) {
-			errorMessage = getText("lang.settlement.error02");
+			errorMessage = "クレジットカード番号またはセキュリティコードがまちがってます。";
 			return result;
 		}
 
@@ -141,10 +141,10 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 		int intExYear = Integer.parseInt(expirationYear);
 		//クレジットカードの期限がきれてないか確認。
 		if (intExYear < year) {
-			errorMessage = getText("lang.settlement.error03");
+			errorMessage = "期限が切れてます。";
 			return result;
 		} else if ((intExYear == year) && (intExMonth < month)) {
-			errorMessage = getText("lang.settlement.error03");
+			errorMessage = "期限が切れてます。";
 			return result;
 		}
 

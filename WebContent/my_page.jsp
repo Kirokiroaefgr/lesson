@@ -38,7 +38,6 @@
                         <ul class="nav nav-pills nav-stacked">
                             <li><a  data-toggle="tab" href="#user"><i class="glyphicon glyphicon-pencil"></i> 登録情報</a></li>
                             <li><a  data-toggle="tab" href="#pu"><i class="glyphicon glyphicon-download"></i> 購入履歴</a></li>
-                            <li><a  data-toggle="tab" href=""><i class="glyphicon glyphicon-leaf"></i> お気に入り</a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,6 +99,25 @@
 
 
                     <div id="pu" class="tab-pane fade">
+
+                        <table class="table">
+                            <tr>
+                                <th>購入日</th>
+                                <th>商品名</th>
+                                <th>購入数</th>
+                                <th>合計金額</th>
+                            </tr>
+                            <s:iterator value="purchaseList">
+                            <tr>
+
+                                <td><s:property value="purchaseDate"/></td>
+                                <td><s:property value="itemName"/></td>
+                                <td><s:property value="orderCount"/></td>
+                                <td><fmt:formatNumber value="${orderCount*subtotal*1.08}" pattern="###,###,###"/>円(税込)</td>
+
+                            </tr>
+                            </s:iterator>
+                        </table>
 
                     </div>
 

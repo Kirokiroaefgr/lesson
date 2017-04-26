@@ -127,12 +127,12 @@ public class SettlementAction extends CartAssist implements SessionAware {
 			} catch (SQLException e) {
 				purchaseDao.rollback();
 				cda.itemRollBack();
-				errorMessage= getText("lang.settlement.error05");
+				errorMessage= "エラーが起きたため決済の処理ができませんでした。申し訳ございませんが、もう一回やり直してください。";
 				e.printStackTrace();
 				return result;
 			}
 		}
-		errorMessage = getText("lang.cart.no");
+		errorMessage = "カートに商品が入っていません。";
 		return INPUT;
 	}
 

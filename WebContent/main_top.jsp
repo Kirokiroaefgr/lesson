@@ -65,9 +65,9 @@
             <div class="row">
                 <div class="col-sm-2"></div>
                 <s:iterator value="displayList">
-                <div class="col-sm-3">
+                <div class="col-xs-12 col-sm-3">
                     <a href='<s:url action="ItemDetailAction"><s:param name="itemId" value="%{itemId}"/></s:url>'>
-                    <img src="./img/Product/<s:property value="itemImg01"/>" class="img-responsive" style="width:50%" alt="Image">
+                    <img src="./img/Product/<s:property value="itemImg01"/>" class="img-responsive" style="width:100%" alt="Image">
                     <p><s:property value="itemName"/></p></a>
                 </div>
                 </s:iterator>

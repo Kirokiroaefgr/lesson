@@ -99,7 +99,7 @@
 
 
                     <div id="pu" class="tab-pane fade">
-
+                        <s:if test="purchaseList!=0">
                         <table class="table">
                             <tr>
                                 <th>購入日</th>
@@ -118,7 +118,7 @@
                             </tr>
                             </s:iterator>
                         </table>
-
+                        </s:if>
                     </div>
 
                 </div>

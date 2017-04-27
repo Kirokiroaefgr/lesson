@@ -99,7 +99,7 @@
 
 
                     <div id="pu" class="tab-pane fade">
-                        <s:if test="purchaseList!=0">
+                        <s:if test="purchaseList.size()!=0">
                         <table class="table">
                             <tr>
                                 <th>購入日</th>

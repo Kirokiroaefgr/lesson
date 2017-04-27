@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.internousdev.lesson.dto.PurchaseDTO;
 import com.internousdev.util.DBConnector;
@@ -31,7 +34,10 @@ public class PurchaseDAO {
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					dto = new PurchaseDTO();
-					dto.setPurchaseDate(rs.getString("purchase_date"));
+					String purchaseDate=rs.getString("purchase_date");
+					LocalDateTime ld = LocalDateTime.parse(purchaseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.n"));
+					String pld =ld.format(DateTimeFormatter.ofPattern("yyyy年MMMMd日hh時mm分", Locale.JAPANESE));
+					dto.setPurchaseDate(pld);
 					dto.setItemName(rs.getString("item_name"));
 					dto.setOrderCount(rs.getInt("order_count"));
 					dto.setSubtotal(rs.getInt("subtotal"));

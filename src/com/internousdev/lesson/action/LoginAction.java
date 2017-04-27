@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.lesson.dao.LoginDAO;
 import com.internousdev.lesson.dto.UsersDTO;
+import com.internousdev.lesson.util.LotInsert;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -57,6 +58,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		LoginDAO dao = new LoginDAO();
 		List<UsersDTO> userList = new ArrayList<>();
 		userList = dao.select(email, password,0);
+		LotInsert insert=new LotInsert();
+		insert.li();
 
 		if (userList.size() == 0) {
 			errorMsg = "パスワードまたはメールアドレスが間違っています。";
@@ -73,7 +76,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 
-		System.out.println(userList.get(0).getBirthday()+"       "+userList.get(0).getPostal());
 		userId = userList.get(0).getUserId();
 		session.put("userId", userId);
 		session.put("name", userList.get(0).getFamilyNameKanji()+userList.get(0).getGivenNameKanji());

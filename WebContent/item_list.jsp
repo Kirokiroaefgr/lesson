@@ -65,8 +65,7 @@
               <div class="panel-heading">
                   <s:if test="itemCount!=0">全<s:property value="itemCount"/>件中<s:property value="minShowingItemCount"/>～<s:property value="maxShowingItemCount"/>件を表示
                       <ul class="list-inline">
-                          <li>並べ替え : おすすめ順 | 新着順</li>
-                          <li>|</li>
+                          <li>並べ替え : </li>
                           <li><a href='<s:url action="ItemListAction">
                               <s:param name="itemGenre" value="%{itemGenre}"/>
                               <s:param name="amountSort" value="2"/>

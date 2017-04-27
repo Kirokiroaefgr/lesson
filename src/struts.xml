@@ -60,12 +60,6 @@
             <result name="error">cart.jsp</result>
         </action>
 
-         <!-- ですと-->
-        <action name="LotInsert" class="com.internousdev.lesson.action.LotInsert" method="execute">
-            <result name="success">cart.jsp</result>
-            <result name="error">cart.jsp</result>
-        </action>
-
         <!-- 決済入力画面への遷移 -->
         <action name="GoSettlementAction" class="com.internousdev.lesson.action.GoSettlementAction" method="execute">
             <result name="success">settlement.jsp</result>

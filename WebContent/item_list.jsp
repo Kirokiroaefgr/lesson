@@ -17,7 +17,7 @@
 <%-- <script src="./js/main.js"></script> --%>
 <title>商品一覧</title>
 </head>
-<body style="background:#fff;">
+<body style="background:;">
 	<div class="container">
 		<%--　ヘッダー --%>
 		<div class="row">
@@ -28,7 +28,7 @@
 		<%--ヘッダー --%>
 	<div class="container-fluid">
 	    <div class="row">
-	        <div class="col-xs-12 col-sm-2" style="background: #fff; ,min-height:700px;">
+	        <div class="col-xs-12 col-sm-2" style="background:; ,min-height:700px;">
 			        <div class="well well-sm">
 			            <s:if test="itemGenre!=null"><s:property value="%{itemGenre}"/></s:if>
 			            <s:else>コンピューター・IT</s:else>
@@ -53,7 +53,7 @@
                   </ul>
               </div>
           </div>
-          <div class="col-xs-12 col-sm-10" style="background: #fff; min-height:700px;">
+          <div class="col-xs-12 col-sm-10" style="background:; min-height:700px;">
               <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="main_top.jsp">Home</a></li>
                   <li class="breadcrumb-item"><a href='<s:url action="ItemListAction"></s:url>'>コンピューター・IT</a></li>

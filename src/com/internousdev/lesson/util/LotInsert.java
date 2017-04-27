@@ -12,7 +12,7 @@ public class LotInsert {
 		String[] genre = { "Ｊａｖａ", "C言語", "データベース", "資格関連" };
 		int aa = 0;
 		DBConnector db = new DBConnector("lesson");
-		String sql = "insert into item (item_name,item_genre,item_author,release_date,page,isbm,price,item_detail,item_img01,stock) values(?,?,'lesson',?,?,123-123,?,'特になし。','noImage.png',50)";
+		String sql = "insert into item (item_name,item_genre,item_author,release_date,page,isbm,price,item_detail,item_img01,stock) values(?,?,'lesson',?,?,'123-123',?,'特になし。','noImage.png',50)";
 		try (Connection con = db.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 			for (int i = 0; i < genre.length; i++) {
 				for (int j = 0; j < 100; j++) {

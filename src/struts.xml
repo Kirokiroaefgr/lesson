@@ -7,6 +7,11 @@
 
      <package name="default" extends="struts-default" namespace="/">
 
+     <!-- トップページの処理 -->
+        <action name="MainTopAction" class="com.internousdev.lesson.action.MainTopAction" method="execute">
+            <result name="success">main_top.jsp</result>
+        </action>
+
         <!-- ログイン処理 -->
         <action name="LoginAction" class="com.internousdev.lesson.action.LoginAction" method="execute">
             <result name="success">main_top.jsp</result>

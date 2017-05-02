@@ -13,6 +13,7 @@ import com.internousdev.lesson.dao.CreditBrandDAO;
 import com.internousdev.lesson.dto.CartDTO;
 import com.internousdev.lesson.dto.UsersDTO;
 import com.internousdev.lesson.util.CartAssist;
+import com.opensymphony.xwork2.ActionSupport;
 
 
 
@@ -21,7 +22,7 @@ import com.internousdev.lesson.util.CartAssist;
  * @since 2017/04/10
  * @version 1.00
  */
-public class SettlementConfirmationAction extends CartAssist implements SessionAware {
+public class SettlementConfirmationAction extends ActionSupport implements SessionAware {
 
 	/**
 	 * シリアルID
@@ -79,9 +80,9 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 	private float payment;
 
 	/**
-	 * 合計注文数
+	 * カート内に入ってる合計商品数
 	 */
-	private int totalOrder;
+	private int totalOrders;
 
 	/**
 	 * カートテーブルの情報を入れるリスト
@@ -107,30 +108,32 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 		if (session.containsKey("userId")) {
 			userId = (int) session.get("userId");
 		} else {
-			return LOGIN;
+			return LOGIN;//遷移先login.jsp
 		}
 
 		CartSelectDAO cartDao = new CartSelectDAO();
 		cartList = cartDao.selectCart(userId, 0, true);
 		if (cartList.size() <= 0) {
-			errorMessage = "カートに何も入ってません。";
-			return INPUT;
+			errorMessage = "カートに商品が入っておりません。";
+			return INPUT;//遷移先cart.jsp
 		}
-		this.totalOrder=totalOrder(cartList);
-		this.payment=payment(cartList);
+		//cartの在庫チェック・合計注文数などを処理するクラスをインスタンス化
+		CartAssist assist=new CartAssist();
+		this.totalOrders=assist.totalOrders(cartList);
+		this.payment=assist.payment(cartList);
 
 		/* VISA or MasterCard */
 		/* クレジットカード番号の桁数をチェックする処理 */
 		checkNumber = creditNumber.substring(0, 6);
 		if (!(creditdao.select(creditBrand, checkNumber))) {
 			errorMessage = "クレジットカードの種類が違う可能性があります。";
-			return result;
+			return result;//遷移先settlement.jsp
 		}
 
 		UsersDTO userDto = creditdao.selectUserInfo(creditBrand, creditNumber,securityCode);
 		if (userDto.getPassword() == null) {
 			errorMessage = "クレジットカード番号またはセキュリティコードがまちがってます。";
-			return result;
+			return result;//遷移先settlement.jsp
 		}
 
 		/* 現在の年と月の取得 */
@@ -142,13 +145,13 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 		//クレジットカードの期限がきれてないか確認。
 		if (intExYear < year) {
 			errorMessage = "期限が切れてます。";
-			return result;
+			return result;//遷移先settlement.jsp
 		} else if ((intExYear == year) && (intExMonth < month)) {
 			errorMessage = "期限が切れてます。";
-			return result;
+			return result;//遷移先settlement.jsp
 		}
 
-		return SUCCESS;
+		return SUCCESS;////遷移先settlement_confirmation.jsp
 	}
 
 
@@ -313,22 +316,19 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 
 
 	/**
-	 * @return totalOrder
+	 * @return totalOrders
 	 */
-	public int getTotalOrder() {
-		return totalOrder;
+	public int getTotalOrders() {
+		return totalOrders;
 	}
 
 
 	/**
-	 * @param totalOrder セットする totalOrder
+	 * @param totalOrders セットする totalOrders
 	 */
-	public void setTotalOrder(int totalOrder) {
-		this.totalOrder = totalOrder;
+	public void setTotalOrders(int totalOrders) {
+		this.totalOrders = totalOrders;
 	}
-
-
-
 
 
 	/**
@@ -377,5 +377,14 @@ public class SettlementConfirmationAction extends CartAssist implements SessionA
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+
+
+	/**
+	 * @return serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 }

@@ -76,7 +76,7 @@
 
                                                   <div class="col-xs-4" style="padding: 0px 0px 0px 3px;">
                                                       <div class="form-group">
-                                                          <input type="text" class="form-control" id="${itemId}"name="orderNumber" value="${orderCount}" maxlength="2"pattern="[0-9]*">
+                                                          <input type="text" class="form-control" id="${itemId}"name="NumberOfOrders" value="${orderCount}" maxlength="2"pattern="[0-9]*">
                                                       </div>
                                                   </div>
 
@@ -116,7 +116,7 @@
                               商品代金合計<br>
                               <p class="text-right"><fmt:formatNumber value="${payment*1.08}" pattern="###,###,###"/>円(税込)</p>
                               合計注文数<br>
-                              <p class="text-right">${order}点</p>
+                              <p class="text-right">${totalOrders}点</p>
                           </div>
                       </div>
                   </div>
@@ -127,7 +127,7 @@
 
 
 
-	</div>
+
 
 </body>
 </html>

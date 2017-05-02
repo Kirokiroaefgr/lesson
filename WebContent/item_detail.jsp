@@ -101,7 +101,7 @@
 
                               <s:form action="CartInsertAction">
                                   <s:hidden name="itemId" value="%{itemId}" />
-                                  <s:hidden name="orderNumber" value="1" />
+                                  <s:hidden name="NumberOfOrders" value="1" />
                                   <s:hidden name="detail" value="true" />
                                   <button class="btn btn-lg btn-warning btn-block" style="margin:10px 0;" type="submit"<s:if test="stock<=0">disabled</s:if>>カートに入れる</button>
                               </s:form>

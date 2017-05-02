@@ -12,6 +12,7 @@ import com.internousdev.lesson.dao.CartDeleteDAO;
 import com.internousdev.lesson.dao.CartSelectDAO;
 import com.internousdev.lesson.dto.CartDTO;
 import com.internousdev.lesson.util.CartAssist;
+import com.opensymphony.xwork2.ActionSupport;
 
 
 
@@ -22,7 +23,7 @@ import com.internousdev.lesson.util.CartAssist;
  * @version 1.0
  */
 
-public class CartDeleteAction extends CartAssist implements SessionAware{
+public class CartDeleteAction extends ActionSupport implements SessionAware{
 
 	/**
 	 * シリアルID
@@ -30,32 +31,32 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	private static final long serialVersionUID = -507759064447081358L;
 
 	/**
-	 * 　カート内の商品数の合計金額
+	 * カート内の商品数の合計金額
 	 */
 	private float payment;
 
 	/**
-	 * 　カート内の商品数
+	 * カート内に入ってる合計商品数
 	 */
-	private int order;
+	private int totalOrders;
 
 	/**
-	 * 　ユーザーID
+	 * ユーザーID
 	 */
 	private int userId;
 
 	/**
-	 * 　商品ID
+	 * 商品ID
 	 */
 	private int itemId;
 
 	/**
-	 * 　セッション
+	 * セッション
 	 */
 	private Map<String, Object> session;
 
 	/**
-	 * 　検索したカート内の商品の情報を入れるリスト
+	 * 検索したカート内の商品の情報を入れるリスト
 	 */
 	private List<CartDTO> cartList = new ArrayList<>();
 
@@ -76,10 +77,16 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	 * カートの中身を削除するメソッド
 	 */
 	public String execute() {
-		String result = SUCCESS;
-		Map<Integer, Integer> cartOrder = new HashMap<>();
+
+		//cartの在庫チェック・合計注文数などを処理するクラスをインスタンス化
+		CartAssist assist=new CartAssist();
+
+		// 商品のitemIDと注文数を入れるためのHashMap
+		Map<Integer, Integer> cartSession = new HashMap<>();
 		CartSelectDAO certDao = new CartSelectDAO();
 		CartDeleteDAO cda =  new CartDeleteDAO();
+
+		//▼▼ログインしてるときの処理 ここから▼▼
 		if (session.containsKey("userId")) {
 			userId = (int) session.get("userId");
 			try {
@@ -89,24 +96,30 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 				cda.itemRollBack();
 				e.printStackTrace();
 			}
+
 			cartList = certDao.selectCart(userId, itemId, true);
-			this.order=totalOrder(cartList);
-			this.payment=payment(cartList);
-			return result;
-		}else if(session.containsKey("cartOrderSession")){
-			cartOrder = autoCast(session.get("cartOrderSession"));
-			cartOrder.remove(itemId);
-			session.put("cartOrderSession", cartOrder);
-			cartList = certDao.displayCart(cartOrder);
-			this.order=totalOrder(cartList);
-			this.payment=payment(cartList);
+			this.totalOrders=assist.totalOrders(cartList);
+			this.payment=assist.payment(cartList);
+
+			//▲▲ログインしてるときの処理 ここまで▲▲
+
+
+			// ▼▼ログインしてないときの処理 ここから▼▼
+		}else if(session.containsKey("cartSession")){
+			cartSession = autoCast(session.get("cartSession"));
+			cartSession.remove(itemId);
+			session.put("cartSession", cartSession);
+			cartList = certDao.displayCart(cartSession);
+			this.totalOrders=assist.totalOrders(cartList);
+			this.payment=assist.payment(cartList);
 		}
 
-		return result;
+		// ▲▲ログインしてないときの処理 ここまで▲▲
+
+		return SUCCESS;
 	}
 
 	/**
-	 * カート内の合計金額を取得するためのメソッド
 	 * @return payment
 	 */
 	public float getPayment() {
@@ -114,7 +127,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * カート内の合計金額を格納するためのメソッド
 	 * @param payment セットする payment
 	 */
 	public void setPayment(float payment) {
@@ -122,23 +134,20 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * カート内の商品数を取得するためのメソッド
-	 * @return order
+	 * @return totalOrders
 	 */
-	public int getOrder() {
-		return order;
+	public int getTotalOrders() {
+		return totalOrders;
 	}
 
 	/**
-	 *  カート内の商品数を格納するためのメソッド
-	 * @param order セットする order
+	 * @param totalOrders セットする totalOrders
 	 */
-	public void setOrder(int order) {
-		this.order = order;
+	public void setTotalOrders(int totalOrders) {
+		this.totalOrders = totalOrders;
 	}
 
 	/**
-	 * ユーザーIDを取得するためのメソッド
 	 * @return userId
 	 */
 	public int getUserId() {
@@ -146,7 +155,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * ユーザーIDを格納するためのメソッド
 	 * @param userId セットする userId
 	 */
 	public void setUserId(int userId) {
@@ -154,7 +162,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * 商品Idを取得するためのメソッド
 	 * @return itemId
 	 */
 	public int getItemId() {
@@ -162,7 +169,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * 商品Idを格納するためのメソッド
 	 * @param itemId セットする itemId
 	 */
 	public void setItemId(int itemId) {
@@ -170,7 +176,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * セッションを取得するためのメソッド
 	 * @return session
 	 */
 	public Map<String, Object> getSession() {
@@ -178,7 +183,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * セッションを格納するためのメソッド
 	 * @param session セットする session
 	 */
 	public void setSession(Map<String, Object> session) {
@@ -186,7 +190,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * カート内の商品情報を取得するためのメソッド
 	 * @return cartList
 	 */
 	public List<CartDTO> getCartList() {
@@ -194,7 +197,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	}
 
 	/**
-	 * カート内の商品情報を格納するためのメソッド
 	 * @param cartList セットする cartList
 	 */
 	public void setCartList(List<CartDTO> cartList) {
@@ -207,4 +209,6 @@ public class CartDeleteAction extends CartAssist implements SessionAware{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
 }

@@ -9,12 +9,13 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.internousdev.lesson.dao.CartSelectDAO;
 import com.internousdev.lesson.dto.CartDTO;
 import com.internousdev.lesson.util.CartAssist;
+import com.opensymphony.xwork2.ActionSupport;
 
 /**決済入力画面に遷移するためのクラス
  * @author KEIGO NISHIMORI
  *@since 2017/04/10
  */
-public class GoSettlementAction extends CartAssist implements SessionAware {
+public class GoSettlementAction extends ActionSupport implements SessionAware {
 
 	/**
 	 * シリアルID
@@ -34,7 +35,7 @@ public class GoSettlementAction extends CartAssist implements SessionAware {
 	/**
 	 * カート内に入ってる合計商品数
 	 */
-	private int order;
+	private int totalOrders;
 
 	/**
 	 * エラーメッセージ
@@ -52,20 +53,27 @@ public class GoSettlementAction extends CartAssist implements SessionAware {
 	private Map<String, Object> session;
 
 	public String execute() {
+
 		if (session.containsKey("userId")) {
 			userId = (int) session.get("userId");
 		} else {
-			return LOGIN;
+			return LOGIN;//遷移先login.jsp
 		}
+
+		//cartの在庫チェック・合計注文数などを処理するクラスをインスタンス化
+		CartAssist assist=new CartAssist();
 		CartSelectDAO cartDao = new CartSelectDAO();
+		//cartテーブルに商品IDがあるか確認
 		cartList = cartDao.selectCart(userId, 0, true);
-		payment=(int) payment(cartList);
-		order=(int) totalOrder(cartList);
-		if (cartList.size() <= 0) {
+		payment=(int) assist.payment(cartList);
+		totalOrders=(int) assist.totalOrders(cartList);
+
+		if (cartList.size() == 0) {
 			errorMessage = "カートに商品が入っておりません。";
-			return ERROR;
+			return ERROR;//遷移先cart.jsp
 		}
-		return SUCCESS;
+
+		return SUCCESS;//遷移先
 	}
 
 	/**
@@ -94,6 +102,20 @@ public class GoSettlementAction extends CartAssist implements SessionAware {
 	 */
 	public void setPayment(int payment) {
 		this.payment = payment;
+	}
+
+	/**
+	 * @return totalOrders
+	 */
+	public int getTotalOrders() {
+		return totalOrders;
+	}
+
+	/**
+	 * @param totalOrders セットする totalOrders
+	 */
+	public void setTotalOrders(int totalOrders) {
+		this.totalOrders = totalOrders;
 	}
 
 	/**
@@ -143,20 +165,6 @@ public class GoSettlementAction extends CartAssist implements SessionAware {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	/**
-	 * @return order
-	 */
-	public int getOrder() {
-		return order;
-	}
-
-	/**
-	 * @param order セットする order
-	 */
-	public void setOrder(int order) {
-		this.order = order;
 	}
 
 

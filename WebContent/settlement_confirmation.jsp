@@ -63,7 +63,7 @@
                      商品代金合計<br>
                     <p class="text-right"><fmt:formatNumber value="${payment*1.08}" pattern="###,###,###"/>円(税込)</p>
                      合計注文数<br>
-                    <p class="text-right">${totalOrder}点</p>
+                    <p class="text-right">${totalOrders}点</p>
                 </div>
             </div>
         </div>

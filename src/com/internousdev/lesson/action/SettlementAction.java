@@ -14,6 +14,7 @@ import com.internousdev.lesson.dao.CreditPurchaseDAO;
 import com.internousdev.lesson.dto.CartDTO;
 import com.internousdev.lesson.dto.UsersDTO;
 import com.internousdev.lesson.util.CartAssist;
+import com.opensymphony.xwork2.ActionSupport;
 
 
 
@@ -24,7 +25,7 @@ import com.internousdev.lesson.util.CartAssist;
  * @since 2017/04/10
  * @version 1.00
  */
-public class SettlementAction extends CartAssist implements SessionAware {
+public class SettlementAction extends ActionSupport implements SessionAware {
 
 	/**
 	 * シリアルID
@@ -39,7 +40,7 @@ public class SettlementAction extends CartAssist implements SessionAware {
 	/**
 	 * カート内に入ってる合計商品数
 	 */
-	private int order;
+	private int totalOrders;
 
 	/**
 	 * ユーザーID
@@ -92,12 +93,11 @@ public class SettlementAction extends CartAssist implements SessionAware {
 	List<CartDTO> msg = new ArrayList<>();
 
 	public String execute() {
-		String result = ERROR;
 
 		if (session.containsKey("userId")) {
 			userId = (int) session.get("userId");
 		} else {
-			return LOGIN;
+			return LOGIN;//遷移先login.jsp
 		}
 
 		CreditBrandDAO creditdao = new CreditBrandDAO();
@@ -105,35 +105,73 @@ public class SettlementAction extends CartAssist implements SessionAware {
 
 		CartSelectDAO cartDao = new CartSelectDAO();
 		cartList = cartDao.selectCart(userId, 0, true);
-		this.msg = StockCheck(cartList, userId, 0);
-		cartList = cartDao.selectCart(userId, 0, true);
-		this.order=totalOrder(cartList);
-		this.payment=payment(cartList);
-		if (msg.size() != 0) {
 
-			return INPUT;
+		//cartの在庫チェック・合計注文数などを処理するクラスをインスタンス化
+		CartAssist assist=new CartAssist();
+		this.msg = assist.StockCheck(cartList, userId, 0);
+		cartList = cartDao.selectCart(userId, 0, true);
+		this.totalOrders=assist.totalOrders(cartList);
+		this.payment=assist.payment(cartList);
+
+		if (msg.size() != 0) {
+			return INPUT;//遷移先cart.jsp
+		}else if(cartList.size()==0){
+			errorMessage = "カートに商品が入っていません。";
+			return INPUT;//遷移先cart.jsp
 		}
+
 		if (cartList.size() != 0) {
 			CreditPurchaseDAO purchaseDao = new CreditPurchaseDAO(creditBrand);
 			CartDeleteDAO cda = new CartDeleteDAO();
 			try {
+				//クレジットテーブルに購入履歴をinsert
 				purchaseDao.CreditPurchaseHistory(userDto, creditBrand, cartList);
+				//自分のサイトの購入履歴にinsert
 				purchaseDao.CetusPurchaseHistory(userId, creditBrand, shippingAddress, cartList);
+				//購入した商品をcartテーブルからdelete
 				cda.delete(userId, 0);
+				//購入した商品の購入数分 在庫から引くupdate
 				cda.itemUpdate(cartList);
 				purchaseDao.commit();
 				cda.itemComit();
-				return SUCCESS;
 			} catch (SQLException e) {
 				purchaseDao.rollback();
 				cda.itemRollBack();
 				errorMessage= "エラーが起きたため決済の処理ができませんでした。申し訳ございませんが、もう一回やり直してください。";
 				e.printStackTrace();
-				return result;
+				return ERROR;//画面遷移先settlement.jsp
 			}
 		}
-		errorMessage = "カートに商品が入っていません。";
-		return INPUT;
+		return SUCCESS;//画面遷移先settlement_complete.jsp
+
+	}
+
+	/**
+	 * @return payment
+	 */
+	public float getPayment() {
+		return payment;
+	}
+
+	/**
+	 * @param payment セットする payment
+	 */
+	public void setPayment(float payment) {
+		this.payment = payment;
+	}
+
+	/**
+	 * @return totalOrders
+	 */
+	public int getTotalOrders() {
+		return totalOrders;
+	}
+
+	/**
+	 * @param totalOrders セットする totalOrders
+	 */
+	public void setTotalOrders(int totalOrders) {
+		this.totalOrders = totalOrders;
 	}
 
 	/**
@@ -277,31 +315,12 @@ public class SettlementAction extends CartAssist implements SessionAware {
 	}
 
 	/**
-	 * @return payment
+	 * @return serialversionuid
 	 */
-	public float getPayment() {
-		return payment;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	/**
-	 * @param payment セットする payment
-	 */
-	public void setPayment(float payment) {
-		this.payment = payment;
-	}
 
-	/**
-	 * @return order
-	 */
-	public int getOrder() {
-		return order;
-	}
-
-	/**
-	 * @param order セットする order
-	 */
-	public void setOrder(int order) {
-		this.order = order;
-	}
 
 }

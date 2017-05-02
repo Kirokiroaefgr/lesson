@@ -17,7 +17,7 @@
 <%-- <script src="./js/main.js"></script> --%>
 <title>決済入力画面</title>
 </head>
-<body onload="document.Mainform.submit()">
+<body >
   <div class="container">
     <%-- ヘッダー --%>
     <div class="row">
@@ -73,8 +73,6 @@
                 </s:iterator>
             </div>
         </div>
-
-        <s:form action="MainTopAction" name="Mainform"></s:form>
 
 
 

@@ -14,7 +14,7 @@
 <%--共通cssの読み込み --%>
 <!-- <link rel="stylesheet" href="./css/back.css"> -->
 <%--共通jsの読み込み --%>
-<%-- <script src="./js/main.js"></script> --%>
+<script src="./js/item_list.js"></script>
 <title>商品一覧</title>
 </head>
 <body style="background:;">
@@ -107,49 +107,34 @@
               <s:if test="maxPage>0">
                   <nav aria-label="Page navigation">
                       <ul class="pagination" >
-                          <li class=" <s:if test="pageNum<=1">disabled</s:if>">
-                              <a  href= '<s:url action="ItemListAction">
-                                  <s:param name="itemGenre" value="%{itemGenre}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/>
-                                  <s:param name="pageNum" value="1"/>
-                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>最初のページ</a>
-                          </li>
-                          <s:if test="pageNum<=1"><li class='page-item disabled'><a >前のページへ</a></li></s:if>
-                          <s:else><li >
-                              <a href= '<s:url action="ItemListAction">
-                                  <s:param name="itemGenre" value="%{itemGenre}"/>
-                                  <s:param name="pageNum" value="%{pageNum-1}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/>
-                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>前のページへ</a></li>
-                          </s:else>
+
+                          <s:if test="pageNum<=1"><li class='disabled'><a >最初のページへ</a></li></s:if>
+                          <s:else><li><a class="first">最初のページへ</a></li></s:else>
+
+                          <s:if test="pageNum<=1"><li class='disabled'><a >前のページへ</a></li></s:if>
+                          <s:else><li><a class="back">前のページへ</a></li></s:else>
+
                           <s:iterator value="page" status="st">
-                              <li class=' <s:if test="pageNum==page[#st.count-1]">active</s:if>'>
-                                  <a  href= '<s:url action="ItemListAction">
-                                      <s:param name="itemGenre" value="%{itemGenre}"/>
-                                      <s:param name="amountSort" value="%{amountSort}"/>
-                                      <s:param name="pageNum" value="%{page[#st.count-1]}"/>
-                                      <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'><s:property/></a>
-                              </li>
+                              <li class=' <s:if test="pageNum==page[#st.count-1]">active</s:if>'><a class="selectPage"><s:property/></a></li>
                           </s:iterator>
-                          <s:if test="maxPage<=pageNum"><li class="page-item disabled"><a>次のページへ</a></li></s:if>
-                          <s:else><li>
-                              <a  href= '<s:url action="ItemListAction">
-                                  <s:param name="itemGenre" value="%{itemGenre}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/>
-                                  <s:param name="pageNum" value="%{pageNum+1}"/>
-                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>次のページへ</a></li>
-                          </s:else>
-                          <li class=" <s:if test='maxPage<=pageNum'>disabled</s:if>">
-                              <a  href= '<s:url action="ItemListAction">
-                                  <s:param name="itemGenre" value="%{itemGenre}"/>
-                                  <s:param name="amountSort" value="%{amountSort}"/>
-                                  <s:param name="pageNum" value="%{maxPage}"/>
-                                  <s:param name="amountSearch" value="%{amountSearch}"/></s:url>'>最後のページ（<s:property value="maxPage"/>）</a>
-                          </li>
+
+                          <s:if test="maxPage<=pageNum"><li class="disabled"><a>次のページへ</a></li></s:if>
+                          <s:else><li><a class="next">次のページへ</a></li></s:else>
+
+                          <s:if test='maxPage<=pageNum'><li class="disabled"><a>最後のページ（<s:property value="maxPage"/>）</a></li></s:if>
+                          <s:else><li><a class="last">最後のページ（<s:property value="maxPage"/>）</a></li></s:else>
                       </ul>
                   </nav>
               </s:if>
           </div>
+
+          <s:form id="mainPage"  action="ItemListAction">
+                 <s:hidden id="selectNum" name="pageNum" value=""/>
+                 <s:hidden name="itemGenre" value="%{itemGenre}"/>
+                 <s:hidden name="amountSort" value="%{amountSort}"/>
+                 <s:hidden name="amountSearch" value="%{amountSearch}"/>
+                 <button class="btn btn-lg btn-warning btn-block" >カートに入れる</button>
+          </s:form>
           <!-- ページネーションここまで -->
           </s:if>
 

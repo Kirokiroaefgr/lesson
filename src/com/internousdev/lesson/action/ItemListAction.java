@@ -38,6 +38,8 @@ public class ItemListAction extends ActionSupport {
 			pageNum=1;
 		}
 		choiceGenre=itemGenre;
+		System.out.println(itemGenre);
+		System.out.println("afeafewfew");
 
 		GenreDAO genreDao= new GenreDAO();
 		genreList = genreDao.selectGenre(itemGenre);

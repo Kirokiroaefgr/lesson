@@ -16,10 +16,10 @@ import com.opensymphony.xwork2.ActionSupport;
 /**
  * <P>
  * カートに商品を登録するクラス<br>
- * ログインしてなかったとき、HashMapの「cartOrder」(商品のitemIDと注文数)を「cartOrderSession」というキー名でsessionにいれて保存している。<br>
+ * ログインしてなかったとき、HashMapの「cartSession」(商品のitemIDと注文数)を「cartSession」というキー名でsessionにいれて保存している。<br>
  * ログインしていたとき、MySQLのcartテーブルに商品情報をinsertとupdateして保存している。 sessionは使っていない。<br>
- * また、sessionに「cartOrderSession」があって(つまりログインしてなかった)、ログインしたときに「cartOrderSession」の<br>
- * 情報を取り出してcartテーブルに商品情報をinsertかupdateして保存したあと「cartOrderSession」をsessionからremoveする。(ログインしたときかならず一回だけ実行する)
+ * また、sessionに「cartSession」があって(つまりログインしてなかった)、ログインしたときに「cartSession」の<br>
+ * 情報を取り出してcartテーブルに商品情報をinsertかupdateして保存したあと「cartSession」をsessionからremoveする。(ログインしたときかならず一回だけ実行する)
  * </p>
  *
  * @author KEIGO NISHIMORI
@@ -158,7 +158,7 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 
 		//▽▽ログインしたときセッション同期する処理(一回だけ) ここから▽▽
 		if (!(session.containsKey("cartSync")) && session.containsKey("cartSession")) {// 同期してないとき&&sessionに"cartSession"があるとき
-			for (Integer key : cartSession.keySet()) {// cartOrderに入ってるキー数だけ繰り返す
+			for (Integer key : cartSession.keySet()) {//cartSessionに入ってるキー数だけ繰り返す
 				cartList = certDao.selectCart(userId, key, false);
 				if (cartList.isEmpty()) {// カートテーブルになにもなかったら、データベースに(insert)
 					this.FirmOrderNumber=assist.FirmOrderNumber(((int)cartSession.get(key) ),0, key);

@@ -8,8 +8,9 @@ $(function(){
 		}
 
 		if ($(this).hasClass('back')) {
-			num = $(".active").text();
-			$("#selectNum").val(num - 1);
+			num = $(".active > a").text();
+			num--;
+			$("#selectNum").val(num);
 		}
 
 		if ($(this).hasClass('selectPage')) {
@@ -18,8 +19,9 @@ $(function(){
 		}
 
 		if ($(this).hasClass('next')) {
-			num = parseInt($(".active").text());
-			$("#selectNum").val(num + 1);
+			num = parseInt($(".active .selectPage").text());
+			num++;
+			$("#selectNum").val(num);
 		}
 
 		if ($(this).hasClass('last')) {

@@ -34,12 +34,18 @@ public class ItemListAction extends ActionSupport {
 	private List<GenreDTO> genreList = new ArrayList<>();
 
 	public String execute() {
+		if(itemGenre==null){
+	    }else if(itemGenre.length()==0){
+			itemGenre=null;
+		}
+
 		if(pageNum==0){
 			pageNum=1;
 		}
 		choiceGenre=itemGenre;
 		System.out.println(itemGenre);
-		System.out.println("afeafewfew");
+		System.out.println(amountSearch);
+		System.out.println(amountSort);
 
 		GenreDAO genreDao= new GenreDAO();
 		genreList = genreDao.selectGenre(itemGenre);

@@ -84,4 +84,16 @@
         </action>
 
     </package>
+
+    <package name="example" extends="json-default" namespace="/">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult" />
+        </result-types>
+
+        <action name="MainTopJson" class="com.internousdev.lesson.action.MainTopAction">
+            <result type="json" name="success"><param name="root">displayList</param></result>
+        </action>
+
+  </package>
+
 </struts>

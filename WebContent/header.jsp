@@ -24,12 +24,12 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href='<s:url action="MainTopAction"></s:url>'><img src="./img/lesson.png" alt="hogehoge" class="img-responsive"></a>
+                <a class="navbar-brand" href='main_top.jsp'><img src="./img/lesson.png" alt="hogehoge" class="img-responsive"></a>
             </div>
 
             <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href='<s:url action="MainTopAction"></s:url>'><span class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
+                    <li><a href='main_top.jsp'><span class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
                     <li><a href='<s:url action="ItemListAction"></s:url>'><span class="glyphicon glyphicon-gift"aria-hidden="true"></span> 商品</a></li>
 
 

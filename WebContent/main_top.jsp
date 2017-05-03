@@ -14,10 +14,10 @@
 <%--共通cssの読み込み --%>
 <!-- <link rel="stylesheet" href="./css/main.css"> -->
 <%--共通jsの読み込み --%>
-<%-- <script src="./js/main.js"></script> --%>
+<script src="./js/main_top.js"></script>
 <title>決済入力画面</title>
 </head>
-<body >
+<body>
   <div class="container">
     <%-- ヘッダー --%>
     <div class="row">
@@ -63,19 +63,15 @@
         <div class="container ">
             <h3 class="text-center">おすすめの書籍</h3><br>
             <div class="row">
-                <div class="col-sm-2"></div>
-                <s:iterator value="displayList">
-                <div class="col-xs-12 col-sm-3">
-                    <a href='<s:url action="ItemDetailAction"><s:param name="itemId" value="%{itemId}"/></s:url>'>
-                    <img src="./img/Product/<s:property value="itemImg01"/>" class="img-responsive" style="width:100%" alt="Image">
-                    <p><s:property value="itemName"/></p></a>
+                <div class="col-sm-1" style="margin-left:50px;"></div>
+                <div id="Recommended">
                 </div>
-                </s:iterator>
             </div>
         </div>
 
-
-
+         <s:form id="mainTop"  action="ItemDetailAction">
+             <s:hidden id="selectId" name="itemId" value="" />
+         </s:form>
   </div>
 
 </body>
